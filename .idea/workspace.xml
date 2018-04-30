@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4e5ba549-e4ee-4dbe-a728-0722da0ec24b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/user/index.php" afterPath="$PROJECT_DIR$/user/index.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -36,17 +37,17 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/user/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="25" column="10" lean-forward="true" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
+            <state relative-caret-position="57">
+              <caret line="61" column="66" lean-forward="false" selection-start-line="61" selection-start-column="66" selection-end-line="61" selection-end-column="66" />
               <folding>
-                <marker date="1525105924622" expanded="true" signature="340:375" ph="SELECT * FRO... Job" />
-                <marker date="1525105924622" expanded="true" signature="340:389" ph="SELECT * FRO... Job" />
-                <marker date="1525105924622" expanded="true" signature="1096:1138" ph="SELECT * FRO... " />
-                <marker date="1525105924622" expanded="true" signature="1096:1268" ph="SELECT * FRO... " />
-                <marker date="1525105924622" expanded="true" signature="1885:1995" ph="SELECT * FRO... Realisation" />
-                <marker date="1525105924622" expanded="true" signature="2104:2199" ph="SELECT * FRO... " />
-                <marker date="1525105924622" expanded="true" signature="2104:2200" ph="SELECT * FRO... " />
-                <marker date="1525105924622" expanded="true" signature="2729:2740" ph="..." />
+                <marker date="1525105990812" expanded="true" signature="340:375" ph="SELECT * FRO... Job" />
+                <marker date="1525105990812" expanded="true" signature="340:389" ph="SELECT * FRO... Job" />
+                <marker date="1525105990812" expanded="true" signature="1096:1136" ph="SELECT * FRO... " />
+                <marker date="1525105990812" expanded="true" signature="1096:1264" ph="SELECT * FRO... " />
+                <marker date="1525105990812" expanded="true" signature="1881:1987" ph="SELECT * FRO... Realisation" />
+                <marker date="1525105990812" expanded="true" signature="2096:2187" ph="SELECT * FRO... " />
+                <marker date="1525105990812" expanded="true" signature="2096:2188" ph="SELECT * FRO... " />
+                <marker date="1525105990812" expanded="true" signature="2717:2728" ph="..." />
               </folding>
             </state>
           </provider>
@@ -439,7 +440,7 @@
       <updated>1525071363542</updated>
       <workItem from="1525071364835" duration="42000" />
       <workItem from="1525072176426" duration="1235000" />
-      <workItem from="1525089928128" duration="10884000" />
+      <workItem from="1525089928128" duration="10944000" />
     </task>
     <task id="LOCAL-00001" summary="first commit Gabriel">
       <created>1525072286335</created>
@@ -469,11 +470,18 @@
       <option name="project" value="LOCAL" />
       <updated>1525105929596</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="correction">
+      <created>1525105942277</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1525105942277</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12161000" />
+    <option name="totallyTimeSpent" value="12221000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -510,7 +518,8 @@
     <MESSAGE value="first draft User page" />
     <MESSAGE value="first media files" />
     <MESSAGE value="media files and merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="media files and merge" />
+    <MESSAGE value="correction" />
+    <option name="LAST_COMMIT_MESSAGE" value="correction" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -594,17 +603,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/user/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="25" column="10" lean-forward="true" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
+        <state relative-caret-position="57">
+          <caret line="61" column="66" lean-forward="false" selection-start-line="61" selection-start-column="66" selection-end-line="61" selection-end-column="66" />
           <folding>
-            <marker date="1525105924622" expanded="true" signature="340:375" ph="SELECT * FRO... Job" />
-            <marker date="1525105924622" expanded="true" signature="340:389" ph="SELECT * FRO... Job" />
-            <marker date="1525105924622" expanded="true" signature="1096:1138" ph="SELECT * FRO... " />
-            <marker date="1525105924622" expanded="true" signature="1096:1268" ph="SELECT * FRO... " />
-            <marker date="1525105924622" expanded="true" signature="1885:1995" ph="SELECT * FRO... Realisation" />
-            <marker date="1525105924622" expanded="true" signature="2104:2199" ph="SELECT * FRO... " />
-            <marker date="1525105924622" expanded="true" signature="2104:2200" ph="SELECT * FRO... " />
-            <marker date="1525105924622" expanded="true" signature="2729:2740" ph="..." />
+            <marker date="1525105990812" expanded="true" signature="340:375" ph="SELECT * FRO... Job" />
+            <marker date="1525105990812" expanded="true" signature="340:389" ph="SELECT * FRO... Job" />
+            <marker date="1525105990812" expanded="true" signature="1096:1136" ph="SELECT * FRO... " />
+            <marker date="1525105990812" expanded="true" signature="1096:1264" ph="SELECT * FRO... " />
+            <marker date="1525105990812" expanded="true" signature="1881:1987" ph="SELECT * FRO... Realisation" />
+            <marker date="1525105990812" expanded="true" signature="2096:2187" ph="SELECT * FRO... " />
+            <marker date="1525105990812" expanded="true" signature="2096:2188" ph="SELECT * FRO... " />
+            <marker date="1525105990812" expanded="true" signature="2717:2728" ph="..." />
           </folding>
         </state>
       </provider>

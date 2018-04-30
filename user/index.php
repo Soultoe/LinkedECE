@@ -40,7 +40,7 @@
         <?php
     }
 
-    $sql = "SELECT * FROM Job inner join `User` on Job.User = `User`.IDUser inner join Company on Company.IDCompany = Job.Company WHERE Job.User = '$_SESSION[id]' ORDER BY DateEnd Desc";
+    $sql = "SELECT * FROM Job inner join user on Job.User = user.IDUser inner join Company on Company.IDCompany = Job.Company WHERE Job.User = '$_SESSION[id]' ORDER BY DateEnd Desc";
     $result = mysqli_query($conn, $sql);
     while($row = mysqli_fetch_assoc($result)){
         ?>
@@ -55,11 +55,11 @@
     <?php
     }
 
-    $sql = "SELECT * FROM Realisation inner join `User` on Realisation.User = `User`.IDUser WHERE IDUser = '$_SESSION[id]'";
+    $sql = "SELECT * FROM Realisation inner join user on Realisation.User = user.IDUser WHERE IDUser = '$_SESSION[id]'";
     $result = mysqli_query($conn, $sql);
     while($row = mysqli_fetch_assoc($result)){
 
-        $sql2 = "SELECT * FROM Realisation inner join `User` on `User`.IDUser = Realisation.User WHERE Projet = $row[Projet]";
+        $sql2 = "SELECT * FROM Realisation inner join user on user.IDUser = Realisation.User WHERE Projet = $row[Projet]";
         $result2 = mysqli_query($conn, $sql2);
         ?>
         <!-- <!-- Information Realisation --> -->
