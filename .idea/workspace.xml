@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4e5ba549-e4ee-4dbe-a728-0722da0ec24b" name="Default" comment="media files and merge">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/logoAmazon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/logoApple.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/logoFacebook.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/logoGoogle.png" />
+    <list default="true" id="4e5ba549-e4ee-4dbe-a728-0722da0ec24b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database.php" afterPath="$PROJECT_DIR$/database.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/user/index.php" afterPath="$PROJECT_DIR$/user/index.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -445,7 +439,7 @@
       <updated>1525071363542</updated>
       <workItem from="1525071364835" duration="42000" />
       <workItem from="1525072176426" duration="1235000" />
-      <workItem from="1525089928128" duration="10876000" />
+      <workItem from="1525089928128" duration="10884000" />
     </task>
     <task id="LOCAL-00001" summary="first commit Gabriel">
       <created>1525072286335</created>
@@ -468,11 +462,18 @@
       <option name="project" value="LOCAL" />
       <updated>1525102274309</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="media files and merge">
+      <created>1525105929596</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1525105929596</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12153000" />
+    <option name="totallyTimeSpent" value="12161000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
