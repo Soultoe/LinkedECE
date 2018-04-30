@@ -74,7 +74,7 @@
 
 </div>
 
-
+<a link="modifyUserInfo.php"></a>
 
 </body>
 <footer>
