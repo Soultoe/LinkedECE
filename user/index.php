@@ -17,8 +17,10 @@
      * Date: 30/04/2018
      * Time: 14:50
      */
+    include_once dirname(__DIR__).'database.php';
 
-    $sql = "SELECT * FROM `User` WHERE IDUser = '$_SESSION[id]'";
+
+    $sql = "SELECT * FROM user WHERE IDUser = '$_SESSION[id]'";
     $result = mysqli_query($conn, $sql);
     if($row = mysqli_fetch_assoc($result)) {
         ?>
@@ -74,7 +76,7 @@
 
 </div>
 
-<a link="modifyUserInfo.php"></a>
+<a href="modifyUserInfo.php"></a>
 
 </body>
 <footer>
