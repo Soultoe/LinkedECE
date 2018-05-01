@@ -17,8 +17,8 @@
      * Date: 30/04/2018
      * Time: 14:50
      */
-    include_once dirname(__DIR__).'database.php';
-
+    //include_once dirname(__DIR__).'database.php';
+    include_once "../database.php";
 
     $sql = "SELECT * FROM user WHERE IDUser = '$_SESSION[id]'";
     $result = mysqli_query($conn, $sql);
