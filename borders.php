@@ -33,6 +33,17 @@
     </div>
 </nav>
 
+<div class="container" style="background-color: #007179">
+    <div class="row">
+        <div class="col-lg-3">
+            <p>Je suis l'encadré de profil</p>
+        </div>
+        <div class="col-lg-9" style="background-color: #2b669a">
+            <p>Je suis le contenu variable de la page.</p>
+        </div>
+    </div>
+</div>
+
 <footer class="footer">
     <div class="container">
         <p class="text-muted">Place sticky footer content here.</p>
