@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	if(!isset($_POST['submit'])) {
 		header("Location: index.php");
 		exit();
@@ -39,7 +40,8 @@
 			$IDUser = mysqli_fetch_assoc($result)['IDUser'];
 			$sql = "INSERT INTO choucroutte (User, Hash) VALUES ('$IDUser', '$hashedPwd')";
 			$result = mysqli_query($conn, $sql);
-			header("Location: index.php?error=success");
+			$_SESSION['id'] = $IDUser;
+			header("Location: home.php");
 			exit();
 		}
 	}

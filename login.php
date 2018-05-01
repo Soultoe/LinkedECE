@@ -31,7 +31,7 @@
 					if($check==true) {
 						$row = mysqli_fetch_assoc($result1);
 						$_SESSION['id'] = $res['IDUser'];
-						header("Location: index.php?error=success");
+						header("Location: home.php");
 						exit();
 					}
 					else {
