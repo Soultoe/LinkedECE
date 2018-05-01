@@ -13,7 +13,7 @@ $arrayID = null;
 $idLoad = null;
 
 ?>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         $(document).ready(function(){
         $("#result").click(function(){
@@ -21,7 +21,7 @@ $idLoad = null;
                 $_SESSION["idLoad"] = $idLoad;
             ?>
         });
-    });
+        });
     </script>
 
 <?php
