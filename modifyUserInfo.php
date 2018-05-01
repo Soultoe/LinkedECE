@@ -20,7 +20,7 @@
 					echo '<input type="text" name="firstName" value="'.$first.'">
 				<input type="text" name="lastName" value="'.$last.'">
 				<input type="text" name="pseudo" value="'.$pseudo.'">
-				<input type="password" name="pwd" placeholder="Previous password">
+				<input type="password" name="pwd1" placeholder="Previous password">
 				<input type="password" name="pwd2" placeholder="New Password">
 				<input type="password" name="pwd3" placeholder="New Password Verif">
 				';
