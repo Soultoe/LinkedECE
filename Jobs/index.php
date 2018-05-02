@@ -5,6 +5,16 @@
     <title>Jobs</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+    <script>
+        $(document).ready(function(){
+            $("#addCompany").click(function(){
+                $.load("addCompany.php");
+            });
+            $("#addJob").click(function(){
+                $.load("addJob.php");
+            });
+        });
+    </script>
 
 </head>
 <body>
@@ -47,8 +57,10 @@ if($row = mysqli_fetch_assoc($result)) {
                 </div>
                 <?php
             }
-            //TO DO : add the add company button
             ?>
+            <div id="addCompany">
+                <button> add Company </button>
+            </div>
         </div>
         <?php
 
@@ -71,8 +83,10 @@ if($row = mysqli_fetch_assoc($result)) {
                 </div>
                 <?php
             }
-            //TO DO : add the add job button
             ?>
+            <div id="addJob">
+                <button> add Job </button>
+            </div>
         </div>
         <?php
 
@@ -113,8 +127,10 @@ if($row = mysqli_fetch_assoc($result)) {
                         </div>
                         <?php
                     }
-                    //TO DO : add the add job button for this company !
                     ?>
+                    <div id="addJob">
+                        <button> add Job </button>
+                    </div>
                 </div>
                 <?php
             }
