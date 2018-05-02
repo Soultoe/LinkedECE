@@ -1,0 +1,56 @@
+body
+{
+    background-color: #bfecef;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.profileSummary
+{
+    display: flex;
+    width: 300px;
+    height: 100vh;
+    background-color: #007179;
+
+    margin-top: 20px;
+    margin-left: 20px;
+    padding: 5px 5px 5px 5px;
+    border-radius: 20px;
+}
+
+.searchBar
+{
+    padding-top: 10px;
+}
+
+.rightSideNavbar
+{
+    float: right;
+
+}
+
+.rightSideNavbar a
+{
+    color: #8ce5fb;
+}
+
+.rightSideNavbar > * {
+    display: inline-block;
+}
+
+.page
+{
+    display: flex;
+}
+
+.content
+{
+    background-color: #007179;
+
+    margin-top: 20px;
+    margin-left: 20px;
+    padding: 5px 5px 5px 5px;
+    border-radius: 20px;
+
+    width: 100vh;
+}

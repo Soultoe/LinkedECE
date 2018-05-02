@@ -12,14 +12,13 @@
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet"> <!--this is bootstrap CSS-->
     <link href="css/bordersStyle.css" rel="stylesheet"> <!--this is bootstrap CSS-->
     <link href="bootstrap/css/sticky-footer-navbar.css" rel="stylesheet">
-
+    <link href="bootstrap/css/profileSummaryStyle.css" rel="stylesheet">
 
 </head>
 <body>
 
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
@@ -27,30 +26,32 @@
                 <li><a href="you.php">You</a></li>
                 <li><a href="notifications.php">Notifications</a></li>
                 <li><a href="jobs.php">Jobs</a></li>
-                <li><a href="disconnect.php">Disconnect</a></li>
             </ul>
+            <div class="rightSideNavbar">
+            <form class="form-inline my-2 my-lg-0 searchBar">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+                <ul class="nav">
+                    <li>
+                        <form action="logout.php" method="POST">
+                            <button action="logout.php" method="POST" name="submit" style="background: none; border: none;"><i class="glyphicon glyphicon-off"></i> </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
         </div><!--/.nav-collapse -->
-    </div>
 </nav>
 
-<div class="container" style="background-color: #007179">
-    <div class="row">
-        <div class="col-lg-3">
-            <p>Je suis l'encadré de profil</p>
-        </div>
-        <div class="col-lg-9" style="background-color: #2b669a">
-            <p>Je suis le contenu variable de la page.</p>
-        </div>
-    </div>
-</div>
+<div class="page">
 
-<footer class="footer">
-    <div class="container">
-        <p class="text-muted">Place sticky footer content here.</p>
+    <div class="profileSummary">
+        <h2>My Information.</h2>
     </div>
-</footer>
 
-    <script src="bootstrap/js/bootstrap.min.js"></script> <!-- This is bootstrap JQuery-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- this is JQuery-->
-</body>
-</html>
+    <div class="content">
+        <p>Page Content</p>
+
+<?php
+	session_start();
+?>
