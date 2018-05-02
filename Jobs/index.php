@@ -144,13 +144,6 @@ if($row = mysqli_fetch_assoc($result)) {
         }
     }
 
-
-        $sql = "SELECT * FROM job INNER JOIN user on IDUser = job.User";
-        $result = mysqli_query($conn, $sql);
-        if($row = mysqli_fetch_assoc($result)) {
-
-
-    }
 }
 
 ?>
