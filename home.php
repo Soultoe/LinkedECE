@@ -6,11 +6,12 @@
 	}
 	else {
 ?>
-	<div class ="container"> 
-	<p> gzfvdgfvhzev </p>
-</div>
-</body>
-</html>
+
+        <p> BLABLABLA </p>
+
+        <?php
+            include_once "footer.php";
+        ?>
 <?php
 	}
 ?>

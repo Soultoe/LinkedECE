@@ -12,9 +12,7 @@
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet"> <!--this is bootstrap CSS-->
     <link href="css/bordersStyle.css" rel="stylesheet"> <!--this is bootstrap CSS-->
     <link href="bootstrap/css/sticky-footer-navbar.css" rel="stylesheet">
-    <link href="bootstrap/css/jumbotron.css" rel="stylesheet">
     <link href="bootstrap/css/profileSummaryStyle.css" rel="stylesheet">
-
 
 </head>
 <body>
@@ -35,26 +33,25 @@
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
                 <ul class="nav">
-                    <li><a href="disconnect.php"><i class="glyphicon glyphicon-off"></i></a></li>
+                    <li>
+                        <form action="logout.php" method="POST">
+                            <button action="logout.php" method="POST" name="submit" style="background: none; border: none;"><i class="glyphicon glyphicon-off"></i> </button>
+                        </form>
+                    </li>
                 </ul>
             </div>
         </div><!--/.nav-collapse -->
 </nav>
 
+<div class="page">
+
     <div class="profileSummary">
         <h2>My Information.</h2>
     </div>
 
+    <div class="content">
+        <p>Page Content</p>
 
-
-<footer class="footer">
-    <div class="container">
-        <p class="text-muted">This website was developped by Romain Brisse, Alexis Martin and Gabriel Padis.</p>
-    </div>
-</footer>
-
-    <script src="bootstrap/js/bootstrap.min.js"></script> <!-- This is bootstrap JQuery-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- this is JQuery-->
 <?php
 	session_start();
 ?>
