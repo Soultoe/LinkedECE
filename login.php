@@ -23,14 +23,15 @@
 				exit();
 			}
 			else {
-				$sql = "SELECT * FROM choucroutte WHERE User = '$res['IDUser']'";
+				$var = $res['IDUser'];
+				$sql = "SELECT * FROM choucroutte WHERE User = '$var'";
 				$result = mysqli_query($conn, $sql);
 				if($res) {
-					$check = password_verify($pwd, $res['Hash']);
+					$check = password_verify($pwd, mysqli_fetch_assoc($result)['Hash']);
 					if($check==true) {
 						$row = mysqli_fetch_assoc($result1);
 						$_SESSION['id'] = $res['IDUser'];
-						header("Location: index.php?error=success");
+						header("Location: home.php");
 						exit();
 					}
 					else {

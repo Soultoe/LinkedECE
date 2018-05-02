@@ -31,5 +31,8 @@
 		<input type="password" name="pwd2" placeholder="Password Verif">
 		<button type="submit" name="submit">Sign Up</button>
 	</form>
+	<form action="logout.php" method="POST">
+		<button action="logout.php" method="POST" name="submit">logout</button>
+	</form>
 </section>
 </body>

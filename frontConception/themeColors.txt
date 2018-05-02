@@ -1,0 +1,6 @@
+#007179 --> main
+#19926d --> active backgrounds
+#005b61 --> borders
+#8ce5fb --> font colors
+#bbffff --> active font colors 
+#45989e --> links
