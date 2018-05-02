@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Jobs</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+</head>
+<body>
+
+<div class="container">
+
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Gabriel
+ * Date: 02/05/2018
+ * Time: 09:40
+ */
+
+session_start();
+include_once "../database.php";
+
+/*
+ * Only an admin as the right to post a job
+ * He can create the corresponding company and then post the job
+ *
+ * A normal user can see the avalable jobs
+ */
+
+$sql = "SELECT Admin FROM user WHERE IDUser = '$_SESSION[id]'";
+$result = mysqli_query($conn, $sql);
+if($row = mysqli_fetch_assoc($result)) {
+    if($row['Admin'] == true){ //Is an admin
+
+        ?>
+        <div id="companies">
+            <?php
+            $sql = "SELECT * FROM company";
+            $result = mysqli_query($conn, $sql);
+            while($row = mysqli_fetch_assoc($result)) {
+                ?>
+                <div id="company">
+                    <img src="<?php echo $row['PP'] ?>">
+                    <p><em><?php echo $row['NameCompany']?></em></p>
+                </div>
+                <?php
+            }
+            //TO DO : add the add company button
+            ?>
+        </div>
+        <?php
+
+
+        ?>
+        <div id="jobs">
+            <?php
+            $sql = "SELECT * FROM job INNER JOIN user ON IDUser = job.User INNER JOIN company ON company.IDCompany = job.Company ";
+            $result = mysqli_query($conn, $sql);
+            while($row = mysqli_fetch_assoc($result)) {
+                ?>
+                <div id="job">
+                    <p><em><?php echo $row['NameCompany']?></em></p>
+                    <p><?php echo $row['Position']?></p>
+                    <p><?php echo $row['Description']?></p>
+                    <p><?php echo $row['DateBegin']?></p>
+                    <p><?php echo $row['DateEnd']?></p>
+                    <p><?php echo $row['NameUser']?></p>
+                    <p><?php echo $row['MailCompany']?></p>
+                </div>
+                <?php
+            }
+            //TO DO : add the add job button
+            ?>
+        </div>
+        <?php
+
+    }
+    else { //Is a normal user
+
+        /*
+         * has a company or nor
+         * if has one : can only see his company jobs proposition and can add one
+         * if doesn't have one then can see all proposition
+         *
+         */
+        $sql = "SELECT Company FROM user";
+        $result = mysqli_query($conn, $sql);
+        if($row = mysqli_fetch_assoc($result)) {
+            if($row['Company'] != null){ //has a company
+                ?>
+                <div id="jobs">
+                    <?php
+                    $comp = null;
+
+                    $sql = "SELECT Company FROM user WHERE IDUser = $_SESSION[id]";
+                    $result = mysqli_query($conn, $sql);
+                    if($row = mysqli_fetch_assoc($result)) $comp = $row['company'];
+
+                    $sql = "SELECT * FROM job INNER JOIN user ON IDUser = job.User INNER JOIN company ON company.IDCompany = job.Company WHERE job.Company = $comp";
+                    $result = mysqli_query($conn, $sql);
+                    while($row = mysqli_fetch_assoc($result)) {
+                        ?>
+                        <div id="job">
+                            <p><em><?php echo $row['NameCompany']?></em></p>
+                            <p><?php echo $row['Position']?></p>
+                            <p><?php echo $row['Description']?></p>
+                            <p><?php echo $row['DateBegin']?></p>
+                            <p><?php echo $row['DateEnd']?></p>
+                            <p><?php echo $row['NameUser']?></p>
+                            <p><?php echo $row['MailCompany']?></p>
+                        </div>
+                        <?php
+                    }
+                    //TO DO : add the add job button for this company !
+                    ?>
+                </div>
+                <?php
+            }
+            else{ //doesn't have a company
+                ?>
+                <div id="jobs">
+                    <?php
+                    $sql = "SELECT * FROM job INNER JOIN user ON IDUser = job.User INNER JOIN company ON company.IDCompany = job.Company ";
+                    $result = mysqli_query($conn, $sql);
+                    while($row = mysqli_fetch_assoc($result)) {
+                        ?>
+                        <div id="job">
+                            <p><em><?php echo $row['NameCompany']?></em></p>
+                            <p><?php echo $row['Position']?></p>
+                            <p><?php echo $row['Description']?></p>
+                            <p><?php echo $row['DateBegin']?></p>
+                            <p><?php echo $row['DateEnd']?></p>
+                            <p><?php echo $row['NameUser']?></p>
+                            <p><?php echo $row['MailCompany']?></p>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+                <?php
+            }
+        }
+    }
+
+
+        $sql = "SELECT * FROM job INNER JOIN user on IDUser = job.User";
+        $result = mysqli_query($conn, $sql);
+        if($row = mysqli_fetch_assoc($result)) {
+
+
+    }
+}
+
+?>
+</div>
+
+</body>
+</html>

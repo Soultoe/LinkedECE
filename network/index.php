@@ -18,6 +18,7 @@
 </head>
 <body>
 
+<div class="container">
 <?php
 /**
  * Created by PhpStorm.
@@ -208,6 +209,8 @@ else { //load the list of member in network
 }
 
 ?>
+
+</div>
 
 </body>
 <footer>
