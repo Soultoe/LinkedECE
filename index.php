@@ -1,27 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>TEST</title>
-</head>
-<body>
+<?php
+include_once "signUpAndLoginBorders.php";
+?>
 
-<header>
-	<nav>
-		<div class = "main-wrapper">
-			<ul>
-				<li><a href="index.php">Home</a></li>
-			</ul>
-			<div>
-				<form action="login.php" method="POST">
-					<input type="text" name="id" placeholder="Username">
-					<input type="password" name="pwd" placeholder="Password">
-					<button type="submit" name="submit">Login</button>
-				</form>
-			</div>
-		</div>
-	</nav>
-</header>
-<section>
+<div>
 	<form action="signup.php" method="POST">
 		<input type="text" name="firstName" placeholder="First Name">
 		<input type="text" name="lastName" placeholder="Last Name">
@@ -34,5 +15,8 @@
 	<form action="logout.php" method="POST">
 		<button action="logout.php" method="POST" name="submit">logout</button>
 	</form>
-</section>
-</body>
+</div>
+
+<?php
+include_once "footer.php";
+?>
