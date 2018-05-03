@@ -29,20 +29,6 @@
             </form>
         </div>
 
-        <div class="rightSideNavbar">
-            <form class="form-inline my-2 my-lg-0 searchBar">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-            <ul class="nav">
-                <li>
-                    <form action="logout.php" method="POST">
-                        <button action="logout.php" method="POST" name="submit" style="background: none; border: none;"><i class="glyphicon glyphicon-off"></i> </button>
-                    </form>
-                </li>
-            </ul>
-        </div>
-
     </div><!--/.nav-collapse -->
 </nav>
 

@@ -2,18 +2,37 @@
 include_once "signUpAndLoginBorders.php";
 ?>
 
-<div>
+    <link href="bootstrap/css/signUp.css" rel="stylesheet">
+
+<div class="signUpForm">
 	<form action="signup.php" method="POST">
-		<input type="text" name="firstName" placeholder="First Name">
-		<input type="text" name="lastName" placeholder="Last Name">
-		<input type="text" name="email" placeholder="Mail">
-		<input type="text" name="pseudo" placeholder="Pseudo">
-		<input type="password" name="pwd" placeholder="Password">
-		<input type="password" name="pwd2" placeholder="Password Verif">
-		<button type="submit" name="submit">Sign Up</button>
-	</form>
-	<form action="logout.php" method="POST">
-		<button action="logout.php" method="POST" name="submit">logout</button>
+		<div class="form-group">
+            <input type="text" name="firstName" placeholder="First Name" id="firstName" class="form-control">
+        </div>
+
+        <div class="form-group">
+		    <input type="text" name="lastName" placeholder="Last Name" id="lastName" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <input type="text" name="email" placeholder="Mail" id="mail" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <input type="text" name="pseudo" placeholder="Pseudo" id="pseudo" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <input type="password" name="pwd" placeholder="Password" id="pwd" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <input type="password" name="pwd2" placeholder="Password Verif" id="pwd2" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <button type="submit" name="submit" class="btn btn-default">Sign Up</button>
+        </div>
 	</form>
 </div>
 
