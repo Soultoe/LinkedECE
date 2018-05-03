@@ -37,7 +37,7 @@
                 <ul class="nav">
                     <li>
                         <form action="logout.php" method="POST">
-                            <button action="logout.php" style="background: none; border: none;"><i class="glyphicon glyphicon-off"></i> </button>
+                            <button action="logout.php" name="submit" style="background: none; border: none;"><i class="glyphicon glyphicon-off"></i> </button>
                         </form>
                     </li>
                 </ul>
