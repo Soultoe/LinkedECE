@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html>
+<?php
+include_once "../borders.php";
+if(!isset($_SESSION['id'])) {
+    header("Location: ../index.php");
+    exit();
+}
+?>
 
-<head>
-    <title>
-
-    </title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
+    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet"> <!--this is bootstrap CSS-->
+    <link href="../css/bordersStyle.css" rel="stylesheet"> <!--this is bootstrap CSS-->
+    <link href="../bootstrap/css/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="../bootstrap/css/profileSummaryStyle.css" rel="stylesheet">
 
 <div class="container">
     <?php
@@ -19,8 +21,9 @@
      */
     //include_once dirname(__DIR__).'database.php';
     include_once "../database.php";
-
-    $sql = "SELECT * FROM user WHERE IDUser = '$_SESSION[id]'";
+    //session_start();
+    $id = $_SESSION['id'];
+    $sql = "SELECT * FROM `user` WHERE IDUser = '$id'";
     $result = mysqli_query($conn, $sql);
     if($row = mysqli_fetch_assoc($result)) {
         ?>
@@ -78,8 +81,6 @@
 
 <a href="modifyUserInfo.php"></a>
 
-</body>
-<footer>
-
-</footer>
-</html>
+<?php
+include_once "../footer.php";
+?>
