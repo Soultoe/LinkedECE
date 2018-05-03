@@ -4,14 +4,10 @@
 		header("Location: index.php");
 		exit();
 	}
-	else {
 ?>
 
-        <p> BLABLABLA </p>
+    <p> BLABLABLA </p>
 
-        <?php
-            include_once "footer.php";
-        ?>
-<?php
-	}
-?>
+    <?php
+        include_once "footer.php";
+    ?>
