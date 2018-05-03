@@ -48,7 +48,7 @@
 <div class="page">
 
     <div class="profileSummary">
-        <h2>My Information.</h2>
+        <h2>My Information : </h2>
     </div>
 
     <div class="content">

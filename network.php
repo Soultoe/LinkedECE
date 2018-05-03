@@ -179,17 +179,21 @@ else { //load the list of member in network
         }
         else{
             foreach($arrayID as $id){
-                $sql = "SELECT DISTINCT  NameUser, FirstNameUser, PP FROM `user` INNER JOIN connection ON `user`.IDUser = connection.User2 WHERE IDuser = '$id'";
+                $sql = "SELECT DISTINCT  NameUser, FirstNameUser, PP FROM `user` INNER JOIN connection ON `user`.IDUser = connection.User2  WHERE IDuser = '$id'";
                 $result = mysqli_query($conn, $sql);
                 if($row = mysqli_fetch_assoc($result)){
                     $idLoad = $id;
-                    ?>
-                    <div id="member">
-                        <img src="<?php echo $row['PP'] ?>">
-                        <p><em><?php echo $row['NameUser']?></em></p>
-                        <p><?php echo $row['FirstNameUser']?></p>
-                    </div>
-                    <?php
+                    $sql2 = "SELECT Path FROM user INNER JOIN media ON media.IDMedia = PP WHERE IDUser = '$id'";
+                    $result2 = mysqli_query($conn, $sql2);
+                    if($row2 = mysqli_fetch_assoc($result2)){
+                        ?>
+                        <div id="member">
+                            <img src="<?php echo $row2['Path'] ?>">
+                            <p><em><?php echo $row['NameUser']?></em></p>
+                            <p><?php echo $row['FirstNameUser']?></p>
+                        </div>
+                        <?php
+                    }
                 }
             }
         }
