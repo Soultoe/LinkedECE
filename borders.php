@@ -14,6 +14,8 @@
     <link href="bootstrap/css/sticky-footer-navbar.css" rel="stylesheet">
     <link href="bootstrap/css/profileSummaryStyle.css" rel="stylesheet">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
 <body>
 
@@ -35,7 +37,7 @@
                 <ul class="nav">
                     <li>
                         <form action="logout.php" method="POST">
-                            <button action="logout.php" method="POST" name="submit" style="background: none; border: none;"><i class="glyphicon glyphicon-off"></i> </button>
+                            <button action="logout.php" style="background: none; border: none;"><i class="glyphicon glyphicon-off"></i> </button>
                         </form>
                     </li>
                 </ul>
@@ -53,4 +55,5 @@
 
 <?php
 	session_start();
+    include_once "database.php";
 ?>

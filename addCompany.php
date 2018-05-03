@@ -1,9 +1,3 @@
-<form action="addCompany.php" method="POST">
-    <input type="text" name="CompanyName" placeholder="Company Name">
-    <input type="text" name="CompanyMail" placeholder="Company Mail">
-    <button type="submit" name="add">Add Company</button>
-</form>
-
 <?php
 /**
  * Created by PhpStorm.
@@ -12,7 +6,12 @@
  * Time: 15:39
  */
 
-session_start();
+include_once  "borders.php";
+if(!isset($_SESSION['id'])){
+    header("Location: index.php");
+    exit();
+}
+
 if(isset($_POST['add'])) {
 include_once 'database.php';
 $name = mysqli_real_escape_string($conn, $_POST['CompanyName']);
@@ -36,6 +35,13 @@ else {
     }
 }
 }
-
 ?>
+<form action="addCompany.php" method="POST">
+    <input type="text" name="CompanyName" placeholder="Company Name">
+    <input type="text" name="CompanyMail" placeholder="Company Mail">
+    <button type="submit" name="add">Add Company</button>
+</form>
 
+<?php
+include_once "footer.php";
+?>

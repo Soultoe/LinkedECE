@@ -1,6 +1,16 @@
 <?php
-session_start();
-include_once 'database.php';
+/**
+ * Created by PhpStorm.
+ * User: Gabriel
+ * Date: 02/05/2018
+ * Time: 15:39
+ */
+
+include_once  "borders.php";
+if(!isset($_SESSION['id'])){
+    header("Location: index.php");
+    exit();
+}
 
 $comp = null;
 
@@ -25,13 +35,6 @@ $row = mysqli_fetch_assoc($result1);
 </form>
 
 <?php
-/**
- * Created by PhpStorm.
- * User: Gabriel
- * Date: 02/05/2018
- * Time: 15:39
- */
-
 
 if(isset($_POST['add'])) {
 
@@ -60,5 +63,6 @@ if(isset($_POST['add'])) {
     }
 }
 
+include_once "footer.php";
 ?>
 
