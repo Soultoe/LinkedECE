@@ -136,3 +136,12 @@
     font-style: italic;
     color: #007179;
 }
+
+.buttons
+{
+    margin-left: 20px;
+    border-width: 2px;
+    border-color: #007179;
+    border-radius: 10px;
+    box-shadow: 2px 2px 0px lightgray;
+}

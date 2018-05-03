@@ -17,6 +17,7 @@ if(!isset($_SESSION['id'])) {
         //include_once dirname(__DIR__).'database.php';
         include_once "database.php";
         //session_start();
+        $admin = false;
         $id = $_SESSION['id'];
         $sql = "SELECT * FROM `user` WHERE IDUser = '$id'";
         $result = mysqli_query($conn, $sql);
@@ -25,6 +26,7 @@ if(!isset($_SESSION['id'])) {
             $mediaResult = mysqli_query($conn,$media);
             $media2 = "SELECT Path FROM media WHERE IDMedia = $row[PP]";
             $mediaResult2 = mysqli_query($conn,$media2);
+            $admin = $row['Admin'];
             if($row2 = mysqli_fetch_assoc($mediaResult) AND $row3 = mysqli_fetch_assoc($mediaResult2)) {
                 ?>
 
@@ -70,7 +72,7 @@ if(!isset($_SESSION['id'])) {
 
                 <div id="experience">
                     <p id="company"> <em><?php echo $row['Pseudo']?></em> a eu une expérience chez <i id="companyName"><?php echo $row['NameCompany']?></i></p>
-                    <p id="position"> as <?php echo $row['Poste']?></p>
+                    <p id="position"> as <?php echo $row['Position']?></p>
                 </div>
 
             <?php
@@ -100,7 +102,23 @@ if(!isset($_SESSION['id'])) {
 
     </div>
 
-    <a href="modifyUserInfo.php"></a>
+    <div class="buttons">
+        <form action="modifyUserInfo.php">
+            <input type="submit" value="Update profile" class="btn btn-success"/>
+        </form>
+        <?php
+        //If the user is an admin and the current profile is not himself, add the delete button that send the delete request.
+        if($admin) {
+            ?>
+            <form action="<?php //create and execute the delete request here?>">
+                <input type="submit" value="Delete" class="btn btn-danger"/>
+            </form>
+            <?php
+        }
+        ?>
+    </div>
+
+
 
 <?php
 include_once "footer.php";
