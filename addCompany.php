@@ -14,7 +14,7 @@
 
 session_start();
 if(isset($_POST['add'])) {
-include_once '../database.php';
+include_once 'database.php';
 $name = mysqli_real_escape_string($conn, $_POST['CompanyName']);
 $mail = mysqli_real_escape_string($conn, $_POST['CompanyMail']);
 

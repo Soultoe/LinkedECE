@@ -30,7 +30,7 @@
  */
 
 session_start();
-include_once "../database.php";
+include_once "database.php";
 
 /*
  * Only an admin as the right to post a job
