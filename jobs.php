@@ -1,26 +1,3 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Jobs</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-    <script>
-        $(document).ready(function(){
-            $("#addCompany").click(function(){
-                $.load("addCompany.php");
-            });
-            $("#addJob").click(function(){
-                $.load("addJob.php");
-            });
-        });
-    </script>
-
-</head>
-<body>
-
-<div class="container">
-
 <?php
 /**
  * Created by PhpStorm.
@@ -29,8 +6,11 @@
  * Time: 09:40
  */
 
-session_start();
-include_once "database.php";
+include_once  "borders.php";
+if(!isset($_SESSION['id'])){
+    header("Location: index.php");
+    exit();
+}
 
 /*
  * Only an admin as the right to post a job
@@ -163,7 +143,20 @@ if($row = mysqli_fetch_assoc($result)) {
 }
 
 ?>
+
+<div id="jquery">
+    <script>
+        $(document).ready(function(){
+            $("#addCompany").click(function(){
+                $.load("addCompany.php");
+            });
+            $("#addJob").click(function(){
+                $.load("addJob.php");
+            });
+        });
+    </script>
 </div>
 
-</body>
-</html>
+<?php
+include_once "footer.php";
+?>

@@ -1,24 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Network</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-    <script>
-        $(document).ready(function(){
-            $("#member").click(function(){
-                <?php
-                $_SESSION["idLoad"] = $idLoad;
-                ?>
-                location.reload();
-            });
-        });
-    </script>
-
-</head>
-<body>
-
-<div class="container">
 <?php
 /**
  * Created by PhpStorm.
@@ -27,8 +6,12 @@
  * Time: 11:23
  */
 
-session_start();
-include_once "database.php";
+include_once  "borders.php";
+if(!isset($_SESSION['id'])){
+    header("Location: index.php");
+    exit();
+}
+
 
 $idLoad = null;
 
@@ -52,14 +35,14 @@ if(isset($_SESSION["idLoad"])){ //if has to load a specifique user page
     //see image, name and a connect button
     $isInNetwork = null;
 
-    $sql = "SELECT * FROM user INNER JOIN connection ON IDUser = User1 WHERE IDUser = '$_SESSION[idLoad]' AND User2 = '$_SESSION[id]'";
+    $sql = "SELECT * FROM `user` INNER JOIN connection ON IDUser = User1 WHERE IDUser = '$_SESSION[idLoad]' AND User2 = '$_SESSION[id]'";
     $result = mysqli_query($conn, $sql);
     if($row = mysqli_fetch_assoc($result)) {
         if($row['IDUser']) $isInNetwork = true;
         else $isInNetwork = false;
     }
 
-    $sql = "SELECT * FROM user INNER JOIN connection ON IDUser = User2 WHERE IDUser = '$_SESSION[idLoad]' AND User2 = '$_SESSION[id]'";
+    $sql = "SELECT * FROM `user` INNER JOIN connection ON IDUser = User2 WHERE IDUser = '$_SESSION[idLoad]' AND User2 = '$_SESSION[id]'";
     $result = mysqli_query($conn, $sql);
     if($row = mysqli_fetch_assoc($result)) {
         if($isInNetwork == false && $row['IDUser']) $isInNetwork = true;
@@ -67,7 +50,7 @@ if(isset($_SESSION["idLoad"])){ //if has to load a specifique user page
     }
 
     if(!$isInNetwork){
-        $sql = "SELECT * FROM user WHERE IDUser = '$_SESSION[id]'";
+        $sql = "SELECT * FROM `user` WHERE IDUser = '$_SESSION[id]'";
         $result = mysqli_query($conn, $sql);
         if($row = mysqli_fetch_assoc($result)) {
             ?>
@@ -111,7 +94,7 @@ if(isset($_SESSION["idLoad"])){ //if has to load a specifique user page
             <?php
 
             //exactly the same code as user/index.php
-            $sql = "SELECT * FROM user WHERE IDUser = '$_SESSION[idLoad]'";
+            $sql = "SELECT * FROM `user` WHERE IDUser = '$_SESSION[idLoad]'";
             $result = mysqli_query($conn, $sql);
             if($row = mysqli_fetch_assoc($result)) {
                 ?>
@@ -131,7 +114,7 @@ if(isset($_SESSION["idLoad"])){ //if has to load a specifique user page
                 <?php
             }
 
-            $sql = "SELECT * FROM Job inner join user on Job.User = user.IDUser inner join Company on Company.IDCompany = Job.Company WHERE Job.User = '$_SESSION[idLoad]' ORDER BY DateEnd Desc";
+            $sql = "SELECT * FROM Job inner join `user` on Job.User = `user`.IDUser inner join Company on Company.IDCompany = Job.Company WHERE Job.User = '$_SESSION[idLoad]' ORDER BY DateEnd Desc";
             $result = mysqli_query($conn, $sql);
             while($row = mysqli_fetch_assoc($result)){
                 ?>
@@ -146,11 +129,11 @@ if(isset($_SESSION["idLoad"])){ //if has to load a specifique user page
                 <?php
             }
 
-            $sql = "SELECT * FROM Realisation inner join user on Realisation.User = user.IDUser WHERE IDUser = '$_SESSION[idLoad]'";
+            $sql = "SELECT * FROM Realisation inner join `user` on Realisation.User = `user`.IDUser WHERE IDUser = '$_SESSION[idLoad]'";
             $result = mysqli_query($conn, $sql);
             while($row = mysqli_fetch_assoc($result)){
 
-                $sql2 = "SELECT * FROM Realisation inner join user on user.IDUser = Realisation.User WHERE Projet = $row[Projet]";
+                $sql2 = "SELECT * FROM Realisation inner join `user` on `user`.IDUser = Realisation.User WHERE Projet = $row[Projet]";
                 $result2 = mysqli_query($conn, $sql2);
                 ?>
                 <!-- <!-- Information Realisation --> -->
@@ -175,13 +158,13 @@ else { //load the list of member in network
         <?php
         $arrayID = null;
 
-        $sql = "SELECT DISTINCT User2 FROM 'user' INNER JOIN connection ON 'user'.IDUser = connection.User2 WHERE User1 = $_SESSION[idLoad]";
+        $sql = "SELECT DISTINCT User2 FROM `user` INNER JOIN connection ON `user`.IDUser = connection.User2 WHERE User1 = $_SESSION[id]";
         $result = mysqli_query($conn, $sql);
         while($row = mysqli_fetch_assoc($result)){
             $arrayID[] = $row['User2'];
         }
 
-        $sql2 = "SELECT DISTINCT User1 FROM 'user' INNER JOIN connection ON 'user'.IDUser = connection.User1 WHERE User1 = $_SESSION[idLoad]";
+        $sql2 = "SELECT DISTINCT User1 FROM `user` INNER JOIN connection ON `user`.IDUser = connection.User1 WHERE User2 = $_SESSION[id]";
         $result2 = mysqli_query($conn, $sql2);
         while($row2 = mysqli_fetch_assoc($result2)){
             if(! in_array($row2['User1'], $arrayID)) {
@@ -189,18 +172,29 @@ else { //load the list of member in network
             }
         }
 
-        foreach($arrayID as $i =>$id){
-            $sql = "SELECT DISTINCT  NameUser, FirstNameUser, PP FROM 'user' INNER JOIN connection ON 'user'.IDUser = connection.User2 WHERE IDuser = '$id'";
-            $result = mysqli_query($conn, $sql);
-            if($row = mysqli_fetch_assoc($result)){
-                $idLoad = $id;
-                ?>
-                <div id="member">
-                    <img src="<?php echo $row['PP'] ?>">
-                    <p><em><?php echo $row['NameUser']?></em></p>
-                    <p><?php echo $row['FirstNameUser']?></p>
-                </div>
-                <?php
+        if($arrayID == null) {
+            ?>
+            <p>You don't have any friends yet.</p>
+            <?php
+        }
+        else{
+            foreach($arrayID as $id){
+                $sql = "SELECT DISTINCT  NameUser, FirstNameUser, PP FROM `user` INNER JOIN connection ON `user`.IDUser = connection.User2  WHERE IDuser = '$id'";
+                $result = mysqli_query($conn, $sql);
+                if($row = mysqli_fetch_assoc($result)){
+                    $idLoad = $id;
+                    $sql2 = "SELECT Path FROM user INNER JOIN media ON media.IDMedia = PP WHERE IDUser = '$id'";
+                    $result2 = mysqli_query($conn, $sql2);
+                    if($row2 = mysqli_fetch_assoc($result2)){
+                        ?>
+                        <div id="member">
+                            <img src="<?php echo $row2['Path'] ?>">
+                            <p><em><?php echo $row['NameUser']?></em></p>
+                            <p><?php echo $row['FirstNameUser']?></p>
+                        </div>
+                        <?php
+                    }
+                }
             }
         }
         ?>
@@ -209,11 +203,19 @@ else { //load the list of member in network
 }
 
 ?>
-
+<div id="jquery">
+    <script>
+        $(document).ready(function(){
+            $("#member").click(function(){
+                <?php
+                $_SESSION["idLoad"] = $idLoad;
+                ?>
+                location.reload();
+            });
+        });
+    </script>
 </div>
+<?php
+include_once "footer.php";
 
-</body>
-<footer>
-
-</footer>
-</html>
+?>
