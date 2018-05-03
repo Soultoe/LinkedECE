@@ -1,11 +1,11 @@
 <?php
 include_once "borders.php";
 if(!isset($_SESSION['id'])) {
-    header("Location: ../index.php");
+    header("Location: index.php");
     exit();
 }
 ?>
-
+    <link href="bootstrap/css/you.css" rel="stylesheet">
     <div class="container">
         <?php
         /**
@@ -21,56 +21,82 @@ if(!isset($_SESSION['id'])) {
         $sql = "SELECT * FROM `user` WHERE IDUser = '$id'";
         $result = mysqli_query($conn, $sql);
         if($row = mysqli_fetch_assoc($result)) {
-            ?>
+            $media = "SELECT Path FROM media WHERE IDMedia = $row[Background]";
+            $mediaResult = mysqli_query($conn,$media);
+            $media2 = "SELECT Path FROM media WHERE IDMedia = $row[PP]";
+            $mediaResult2 = mysqli_query($conn,$media2);
+            if($row2 = mysqli_fetch_assoc($mediaResult) AND $row3 = mysqli_fetch_assoc($mediaResult2)) {
+                ?>
 
-            <!-- Information User -->
+                <!-- Information User -->
 
-            <img id="profilePicture" src="<?php echo $row['PP']?>" alt="Profile Picture" height="42" width="42">
-            <img id="backgroundPicture" src="<?php echo $row['Background']?>" alt="Background Picture" height="60" width="80%">
+                <div class="userProfile">
 
-            <p id="NameUser"><?php echo $row['NameUser'] ?></p>
-            <p id="FirstNameUser"><?php echo $row['FirstNameUser'] ?></p>
-            <p id="Pseudo"><?php echo $row['Pseudo'] ?></p>
-            <p id="MailUser"><?php echo $row['MailUser'] ?></p>
-            <p id="Status"><?php echo $row['Status'] ?></p>
+                    <img class="backgroundPicture" src="<?php echo $row2['Path'] ?>" alt="Background Picture">
+
+                    <h1>My Informations</h1>
+                    <div class="userInfo">
+
+                        <img class="profilePicture" src="<?php echo $row3['Path'] ?>" alt="Profile Picture">
 
 
-            <?php
+                    <div class="contactInfo">
+                        <p id="Pseudo"><?php echo $row['Pseudo'] ?></p>
+                        <p id="NameUser"><?php echo $row['NameUser'] ?></p>
+                        <p id="FirstNameUser"><?php echo $row['FirstNameUser'] ?></p>
+                        <p id="MailUser"><?php echo $row['MailUser'] ?></p>
+                    </div>
+
+                        <div class="otherInfo">
+                            <p id="Status"><?php echo $row['Status'] ?></p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <?php
+            }
         }
 
-        $sql = "SELECT * FROM Job inner join user on Job.User = user.IDUser inner join Company on Company.IDCompany = Job.Company WHERE Job.User = '$_SESSION[id]' ORDER BY DateEnd Desc";
-        $result = mysqli_query($conn, $sql);
-        while($row = mysqli_fetch_assoc($result)){
+        $sql = "SELECT * FROM experience inner join user on experience.User = user.IDUser inner join Company on Company.IDCompany = experience.Company WHERE experience.User = '$_SESSION[id]'";
+        $result = mysqli_query($conn, $sql);?>
+        <h1 style="margin-left: 20px;">My Experiences</h1>
+        <div id="experiences">
+
+            <?php while($row = mysqli_fetch_assoc($result)){
             ?>
             <!-- Information Job -->
-            <div id="jobs">
-                <div id="job">
-                    <p id="titleJob"> <em><?php echo $row['Pseudo']?></em> a eu une expérience chez <em><?php echo $row['NameCompany']?></em></p><br>
-                    <p id="descriptionJob"> <em><?php echo $row['Poste']?></em> : <?php echo $row['Description']?></p>
-                    <p id="dateJob"> Du : <?php echo $row['DateBegin']?> Au : <?php echo $row['DateEnd']?></p>
+
+                <div id="experience">
+                    <p id="company"> <em><?php echo $row['Pseudo']?></em> a eu une expérience chez <i id="companyName"><?php echo $row['NameCompany']?></i></p>
+                    <p id="position"> as <?php echo $row['Poste']?></p>
                 </div>
-            </div>
+
             <?php
-        }
+        }?>
+        </div>
+        <?php
 
         $sql = "SELECT * FROM Realisation inner join user on Realisation.User = user.IDUser WHERE IDUser = '$_SESSION[id]'";
         $result = mysqli_query($conn, $sql);
-        while($row = mysqli_fetch_assoc($result)){
+        ?>
+        <h1 style="margin-left: 20px;">My Realisations</h1>
+        <div id="realisations">
+        <?php while($row = mysqli_fetch_assoc($result)){
 
             $sql2 = "SELECT * FROM Realisation inner join user on user.IDUser = Realisation.User WHERE Projet = $row[Projet]";
             $result2 = mysqli_query($conn, $sql2);
             ?>
-            <!-- <!-- Information Realisation --> -->
-            <div id="realisations">
+            <!-- <!-- Information Realisation -->
+
                 <div id="realisation">
                     <p id="descriptionRealisation"><?php echo $row['Description']?></p>
                     <p id="membersRealisation"> Avec : <?php while($row2 = mysqli_fetch_assoc($result2)){ echo $row2['NameUser']; }?> </p>
                 </div>
-            </div>
             <?php
-        }
-
-        ?>
+        }?>
+        </div>
 
     </div>
 

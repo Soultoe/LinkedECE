@@ -1,0 +1,138 @@
+.userProfile
+{
+    display: flex;
+    flex-direction: column;
+    margin: 20px 20px 50px 20px;
+}
+
+.userInfo
+{
+    display: flex;
+}
+
+.profilePicture
+{
+    height: 150px;
+    width: 150px;
+
+    margin-right: 50px;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.backgroundPicture
+{
+    width: 80%;
+    height: 150px;
+
+    margin-bottom: 50px;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.contactInfo
+{
+    padding-top: 10px;
+    margin-right: 50px;
+}
+
+.otherInfo
+{
+    padding-top: 10px;
+    margin-left: 50px;
+}
+
+#NameUser, #FirstNameUser, #Pseudo, #MailUser, #Status
+{
+    font-family: "Helvetica Neue";
+}
+
+#NameUser
+{
+    font-size: medium;
+    color: #007179;
+
+}
+
+#FirstNameUser
+{
+    font-size: medium;
+    color: #007179;
+}
+
+#Pseudo
+{
+    font-size: large;
+    color: #007179;
+}
+
+#MailUser
+{
+    font-size: small;
+    color: #007179;
+}
+
+#Status
+{
+    font-size: medium;
+    color: #007179;
+}
+
+#experiences
+{
+    padding-left: 20px;
+    padding-top: 10px;
+    margin-left: 15px;
+    margin-right: 50px;
+}
+
+#experience
+{
+    padding-top: 10px;
+    margin-right: 50px;
+}
+
+#company
+{
+    font-size: large;
+    font-weight: bold;
+    color: #007179;
+}
+
+#companyName
+{
+    color: #000000;
+    font-weight: bolder;
+}
+
+#position
+{
+    font-size: small;
+    font-style: italic;
+    color: #007179;
+}
+
+#realisations
+{
+    padding-top: 10px;
+    margin-right: 50px;
+    margin-left: 35px;
+}
+
+#realisation
+{
+    padding-top: 10px;
+    margin-right: 50px;
+}
+
+#descriptionRealisation
+{
+    font-size: large;
+    font-weight: bold;
+    color: #007179;
+}
+
+#membersRealisation
+{
+    font-size: small;
+    font-style: italic;
+    color: #007179;
+}
