@@ -113,7 +113,7 @@
 
         <h2>Add or Update Realisations</h2>
 
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="addRealisation.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label>Projet Name</label>
                 <input type="text" name="project" value="project" class="form-control field">
