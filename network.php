@@ -283,9 +283,11 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
                             Relationship: "Friend",
                             Id : id
                         }
-                    }).done(function (msg) {
+                    }).done(function () {
                         //alert("Data Saved: " + msg);
                         //alert("Connection request sent");
+                        $("#ConnectFriend").hide();
+                        $("#ConnectPro").hide();
                     });
                 });
 
@@ -298,9 +300,11 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
                             Relationship: "Contact",
                             Id : id
                         }
-                    }).done(function (msg) {
+                    }).done(function () {
                         //alert("Data Saved: " + msg);
                         //alert("Connection request sent");
+                        $("#ConnectPro").hide();
+                        $("#ConnectFriend").hide();
                     });
                 });
             });
