@@ -15,7 +15,8 @@
     <link href="bootstrap/css/profileSummaryStyle.css" rel="stylesheet">
     <link href="bootstrap/css/myInformation.css" rel="stylesheet">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script src="http_ajax.googleapis.com_ajax_libs_jquery_3.3.1_jquery.js"></script>
 
 </head>
 <body>
@@ -25,7 +26,7 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="home.php">Home</a></li>
-                <li><a href="network.php">My Network</a></li>
+                <li id="myNetwork"><a href="network.php">My Network</a></li>
                 <li><a href="you.php">You</a></li>
                 <li><a href="notifications.php">Notifications</a></li>
                 <li><a href="jobs.php">Jobs</a></li>
@@ -81,7 +82,22 @@
                 ?>
     </div>
 
+    <div id="jquery">
+        <script>
+            $(document).ready(function(){
+                $("#myNetwork").click(function(){
+                    <?php
+                    //unset($_SESSION['idLoad']);
+                    //unset($_POST['idLoad']);
+                    ?>
+                });
+            });
+        </script>
+    </div>
+
     <div class="content">
+
+
 
 <?php
 	//session_start();
