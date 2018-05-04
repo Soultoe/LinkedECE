@@ -30,7 +30,6 @@
         <div class="place">
         <label>Insérer le lieu</label>
 		<input type="text" name="place">
-<<<<<<< HEAD
         </div>
 
         </div>
@@ -96,6 +95,16 @@
 					<?php
 				}
 				?>
+					<form action="toggleReact.php" method="POST">
+						<input type="hidden" name="post" value="<?php echo $res['IDPublication'] ?>">
+						<input type="submit" name="submit" value="<?php
+							$sql = "SELECT COUNT(DISTINCT User) AS 'Num' FROM reaction WHERE Publication=$res[IDPublication]";
+							$react = mysqli_fetch_assoc(mysqli_query($conn, $sql))['Num'];
+							$sql = "SELECT COUNT(DISTINCT User) AS 'Num' FROM reaction WHERE Publication=$res[IDPublication] AND reaction.User=$_SESSION[id]";
+							$already = mysqli_fetch_assoc(mysqli_query($conn, $sql))['Num'];
+							echo ($already==0 ? "LIKE" : "LIKED")." $react";
+						?>">
+					</form>
 					<form action="newComment.php" method="POST">
 						<input type="hidden" name= "User" value="<?php echo $_SESSION['id'] ?>">
 						<input type="hidden" name= "post" value="<?php echo $res['IDPublication'] ?>">
@@ -105,16 +114,17 @@
 				<?php
 				$sql = "SELECT * FROM comment INNER JOIN `user` ON IDUser = User WHERE Publication=$res[IDPublication] ORDER BY `DateComment` ASC";
 				$comments = mysqli_query($conn, $sql);
-				//$test = mysqli_fetch_assoc($comments);
-				//var_dump($test);
 				while ($row = mysqli_fetch_assoc($comments)) {
 					?>
 					<div>
 						<p><?php echo $row['Pseudo'] ?> has left a comment : <?php echo $row['Content'] ?></p>
+						<?php
+						if($row['User'] == $_SESSION['id'] || $admin[0] == 1) { ?>
 						<form action = "deleteComment" method="POST">
 							<input type="hidden" name="DEL" value=<?php echo $row['IDComment'] ?>>
 							<input type="submit" name="submit" value="Delete Comment">
 						</form>
+						<?php } ?>
 					</div>
 				<?php
 				}

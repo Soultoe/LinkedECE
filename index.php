@@ -1,5 +1,9 @@
 <?php
 include_once "signUpAndLoginBorders.php";
+if(isset($_SESSION['id'])) {
+	header("Location: home.php");
+	exit();
+}
 ?>
 
     <link href="bootstrap/css/signUp.css" rel="stylesheet">
