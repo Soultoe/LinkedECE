@@ -15,7 +15,8 @@
     <link href="bootstrap/css/profileSummaryStyle.css" rel="stylesheet">
     <link href="bootstrap/css/myInformation.css" rel="stylesheet">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script src="http_ajax.googleapis.com_ajax_libs_jquery_3.3.1_jquery.js"></script>
 
 </head>
 <body>

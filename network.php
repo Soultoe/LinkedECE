@@ -28,7 +28,10 @@ function connect($relationString)
         echo "Connection sent";
     }
 }
-
+/*
+if(isset($_SESSION['idLoad'])){
+    unset($_SESSION['idLoad']);
+}*/
 
 if (isset($_POST['idLoad'])) {
     $_SESSION["idLoad"] = $_POST['idLoad'];
@@ -77,6 +80,11 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
         ?>
         <div id="connected">
             <?php
+            /**
+             * CODE de you.php
+             *
+             */
+
             //put the Relationship with the current user
             $relationship = null;
             $sql = "SELECT Relationship FROM connection WHERE User1 = $_SESSION[idLoad] AND User2 = $_SESSION[id]";
@@ -214,6 +222,8 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
     <div id="jquery">
         <script>
             $(document).ready(function () {
+
+
                 $(".member").click(function () {
                     /*
                      var xhttp = new XMLHttpRequest();
@@ -227,7 +237,7 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
                      */
 
                     var id = this.id;
-                    alert(id);
+                    //alert(id);
 
                     $.ajax({
                         url: "network.php",
