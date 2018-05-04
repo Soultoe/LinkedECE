@@ -46,14 +46,14 @@
 	$fileError = $file['error'];
 	$fileType = $file['type'];
 	$fileExt = strtolower(end(explode('.', $fileName)));
-	$allowed = array('jpg', 'jpeg', 'png', 'gif');
+	$allowed = array('jpg', 'jpeg', 'png', 'gif', 'PNG');
 	if(!in_array($fileExt, $allowed)){
 		$err = $err."+PPExtNotAllowed".$fileExt.$fileName;
 	} else {
 		if ($fileError != 0)
 			$err = $err."+fileUploadError";
 		else {
-			if($fileSize > 500000) {
+			if($fileSize > 1000000) {
 				$err = $err.'+fileTooBig';
 			}
 			else {

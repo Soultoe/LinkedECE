@@ -75,9 +75,8 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
                     <p class="nameFriend"><?php echo $row['FirstNameUser'] ?> <?php echo $row['NameUser'] ?></p>
                     </div>
 
-                    <button class="btn btn-success" id="Connect" action="connect('Friends')">Connect as a Friend
-                    </button>
-                    <button class="btn btn-primary" id="Connect" action="connect('Contact')">Connect as a Pro</button>
+                    <button id="ConnectFriend">Connect as a Friend</button>
+                    <button id="ConnectPro">Connect as a Pro</button>
                 </div>
                 <?php
             }
@@ -259,20 +258,7 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
     <div id="jquery">
         <script>
             $(document).ready(function () {
-
-
                 $(".member").click(function () {
-                    /*
-                     var xhttp = new XMLHttpRequest();
-                     xhttp.onreadystatechange=function() {
-                     if (this.readyState == 4 && this.status == 200) {
-                     document.getElementById("member #id").innerHTML = this.responseText;
-                     }
-                     };
-                     xhttp.open("GET", "network.php?idLoad=" + $(this.id), true);
-                     xhttp.send();
-                     */
-
                     var id = this.id;
                     //alert(id);
 
@@ -285,6 +271,37 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
                         location.reload(true);
                     });
 
+                });
+
+                $("#ConnectFriend").click(function () {
+                    var id = this.id;
+                    //alert(id);
+                    $.ajax({
+                        type: "POST",
+                        url: "connect.php",
+                        data: {
+                            Relationship: "Friend",
+                            Id : id
+                        }
+                    }).done(function (msg) {
+                        //alert("Data Saved: " + msg);
+                        //alert("Connection request sent");
+                    });
+                });
+
+                $("#ConnectPro").click(function () {
+                    var id = this.id;
+                    $.ajax({
+                        type: "POST",
+                        url: "connect.php",
+                        data: {
+                            Relationship: "Contact",
+                            Id : id
+                        }
+                    }).done(function (msg) {
+                        //alert("Data Saved: " + msg);
+                        //alert("Connection request sent");
+                    });
                 });
             });
         </script>
