@@ -31,7 +31,7 @@ include_once "signUpAndLoginBorders.php";
         </div>
 
         <div class="form-group">
-            <button type="submit" name="submit" class="btn btn-default">Sign Up</button>
+            <button type="submit" name="submit" class="btn btn-success">Sign Up</button>
         </div>
 	</form>
 </div>

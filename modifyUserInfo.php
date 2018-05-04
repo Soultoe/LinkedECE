@@ -6,6 +6,11 @@
 	}
 ?>
     <link href="bootstrap/css/modifyUserInfoStyle.css" rel="stylesheet">
+    <form action="you.php" method="post" class="backForm">
+        <input type="submit" name="submit" value="Back" class="btn btn-primary"/>
+    </form>
+
+    <div class="updateProfile">
 	<form action="update.php" method="POST" enctype="multipart/form-data">
 		<?php
 			include_once "database.php";
@@ -59,10 +64,9 @@
 		';
 		?>
 		<button type="submit" name="submit" class="btn btn-success">Update</button>
-        <form action="you.php">
-            <input type="button" name="submit" value="Back" class="btn btn-primary"/>
-        </form>
 	</form>
+    </div>
+
 
 <?php
     include_once "footer.php";
