@@ -45,7 +45,9 @@ if($row = mysqli_fetch_assoc($result)) {
             }
             ?>
             <div id="addCompany">
-                <button class="btn btn-success"> add Company </button>
+                <form action="addCompany.php" method="post">
+                    <input type="submit" name="addCompany" class="btn btn-success" value="add Company"/>
+                </form>
             </div>
         </div>
         <?php
@@ -71,7 +73,9 @@ if($row = mysqli_fetch_assoc($result)) {
             }
             ?>
             <div id="addJob">
-                <button class="btn btn-success addJobButton"> add Job </button>
+                <form action="addJob.php" method="post">
+                    <input type="submit" name="addJob" class="btn btn-success" value="add Job" id="addJobButton"/>
+                </form>
             </div>
         </div>
         <?php
@@ -116,7 +120,9 @@ if($row = mysqli_fetch_assoc($result)) {
                     }
                     ?>
                     <div id="addJob">
-                        <button> add Job </button>
+                        <form action="addJob.php" method="post">
+                            <input type="submit" name="addJob" class="btn btn-success" value="add Job" id="addJobButton"/>
+                        </form>
                     </div>
                 </div>
                 <?php

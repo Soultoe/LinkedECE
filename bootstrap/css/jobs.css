@@ -39,11 +39,17 @@
     border-color: #007179;
 
     margin-top: 20px;
+    margin-bottom: 20px;
     padding: 10px;
 
 }
 
-.addJobButton
+#addJobButton
+{
+    margin-top: 20px;
+}
+
+#addJob
 {
     margin-top: 20px;
 }

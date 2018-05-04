@@ -59,10 +59,10 @@
 		';
 		?>
 		<button type="submit" name="submit" class="btn btn-success">Update</button>
-        <form action="you.php">
-            <input type="button" name="submit" value="Back" class="btn btn-primary"/>
-        </form>
 	</form>
+    <form action="you.php" method="post">
+        <input type="submit" name="submit" value="Back" class="btn btn-primary"/>
+    </form>
 
 <?php
     include_once "footer.php";
