@@ -19,7 +19,7 @@
 	</form>
 </div>
 <?php
-	$arrayID = null;
+	$arrayID = array();
 	$sql = "SELECT DISTINCT User2 FROM `user` INNER JOIN connection ON `user`.IDUser = connection.User1 WHERE User1 = $_SESSION[id]";
 	$result = mysqli_query($conn, $sql);
 	while($row = mysqli_fetch_assoc($result)){
