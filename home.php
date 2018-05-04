@@ -5,9 +5,14 @@
 		exit();
 	}
 ?>
+<div class = "newPublish">
+	<form method="post" action="newPost.php" method="POST">
+		<label>Insérer un document</label>
+		<textarea name="text", placeholder = "Ecrivez votre nouvelle publication ici"></textarea>
+		<button action="logout.php" method="POST" name="submit">Publier</button>
+	</form>
+</div>
 
-    <p> BLABLABLA </p>
-
-    <?php
-        include_once "footer.php";
-    ?>
+<?php
+	include_once "footer.php";
+?>
