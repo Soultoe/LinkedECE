@@ -50,6 +50,7 @@ if (empty($string)) {
     }
 
     ?>
+    <link href="bootstrap/css/network.css" rel="stylesheet">
     <div class="members">
         <?php
         if($arrayID != null){
@@ -64,8 +65,8 @@ if (empty($string)) {
                         $idLoad = $id;
                     ?>
                         <div class="member" id="<?php echo $id; ?>">
-                        <img src="<?php echo $row2['Path'] ?>">
-                        <p><em><?php echo $row['NameUser'] ?></em> <?php echo $row['FirstNameUser'] ?></p>
+                        <img src="<?php echo $row2['Path'] ?>" class="friendPic">
+                        <p class="nameFriend"><?php echo $row['NameUser'] ?> <?php echo $row['FirstNameUser'] ?></p>
                     </div>
                     <?php
                     }

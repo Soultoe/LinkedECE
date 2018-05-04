@@ -1,11 +1,6 @@
 .members
 {
     display: flex;
-
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 10px;
-    border-color: #007179;
 }
 
 .member
@@ -46,4 +41,25 @@
     padding-top: 10px;
 
     margin-right: 2px;
+}
+
+#unconnected
+{
+    display: flex;
+
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: #007179;
+}
+
+.nameAndPic
+{
+    display: flex;
+}
+
+.deleteFriendButton
+{
+    padding-top: 10px;
+    margin-left: 10px;
 }

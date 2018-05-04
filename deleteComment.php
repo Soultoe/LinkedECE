@@ -4,7 +4,7 @@
 		header("Location: home.php");
 		exit();
 	}
-	$sql = "DELETE FROM `publication` WHERE IDPublication=$_POST[DEL]";
+	$sql = "DELETE FROM `comment` WHERE IDComment=$_POST[DEL]";
 	mysqli_query($conn, $sql);
 	header("Location: home.php");
 	exit();
