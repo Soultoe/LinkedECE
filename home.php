@@ -30,7 +30,6 @@
         <div class="place">
         <label>Insérer le lieu</label>
 		<input type="text" name="place">
-<<<<<<< HEAD
         </div>
 
         </div>
