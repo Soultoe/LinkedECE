@@ -24,7 +24,7 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="home.php">Home</a></li>
-                <li><a href="network.php">My Network</a></li>
+                <li><a href="network.php" id="myNetwork">My Network</a></li>
                 <li><a href="you.php">You</a></li>
                 <li><a href="notifications.php">Notifications</a></li>
                 <li><a href="jobs.php">Jobs</a></li>
@@ -51,7 +51,21 @@
         <h2>My Information : </h2>
     </div>
 
+    <div id="jquery">
+        <script>
+            $(document).ready(function(){
+                $("#myNetwork").click(function(){
+                    <?php
+                    unset($_SESSION['idLoad']);
+                    ?>
+                });
+            });
+        </script>
+    </div>
+
     <div class="content">
+
+
 
 <?php
 	session_start();

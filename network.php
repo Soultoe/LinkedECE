@@ -12,8 +12,10 @@ if(!isset($_SESSION['id'])){
     exit();
 }
 
+var_dump($_SESSION);
+var_dump($_POST);
 
-$idLoad = null;
+//$idLoad = null;
 
 function connect($relationString){
     $sql = "INSERT INTO connectionrequest(User1, User2, Relationship) VALUES ($_SESSION[id], $_SESSION[idLoad], $relationString)";
@@ -27,6 +29,12 @@ function connect($relationString){
     if($result){
         echo "Connection sent";
     }
+}
+
+
+if(isset($_POST['idLoad'])){
+    $_SESSION["idLoad"] = $_POST['idLoad'];
+    unset($_POST['idLoad']);
 }
 
 
@@ -50,7 +58,7 @@ if(isset($_SESSION["idLoad"])){ //if has to load a specifique user page
     }
 
     if(!$isInNetwork){
-        $sql = "SELECT * FROM `user` WHERE IDUser = '$_SESSION[id]'";
+        $sql = "SELECT * FROM `user` WHERE IDUser = '$_SESSION[idLoad]'";
         $result = mysqli_query($conn, $sql);
         if($row = mysqli_fetch_assoc($result)) {
             ?>
@@ -154,7 +162,7 @@ if(isset($_SESSION["idLoad"])){ //if has to load a specifique user page
 }
 else { //load the list of member in network
     ?>
-    <div id="members">
+    <div class="members">
         <?php
         $arrayID = null;
 
@@ -182,12 +190,12 @@ else { //load the list of member in network
                 $sql = "SELECT DISTINCT  NameUser, FirstNameUser, PP FROM `user` INNER JOIN connection ON `user`.IDUser = connection.User2  WHERE IDuser = '$id'";
                 $result = mysqli_query($conn, $sql);
                 if($row = mysqli_fetch_assoc($result)){
-                    $idLoad = $id;
                     $sql2 = "SELECT Path FROM user INNER JOIN media ON media.IDMedia = PP WHERE IDUser = '$id'";
                     $result2 = mysqli_query($conn, $sql2);
                     if($row2 = mysqli_fetch_assoc($result2)){
+                        //$idLoad = $id;
                         ?>
-                        <div id="member">
+                        <div class="member" id="<?php echo $id; ?>">
                             <img src="<?php echo $row2['Path'] ?>">
                             <p><em><?php echo $row['NameUser']?></em></p>
                             <p><?php echo $row['FirstNameUser']?></p>
@@ -206,11 +214,27 @@ else { //load the list of member in network
 <div id="jquery">
     <script>
         $(document).ready(function(){
-            $("#member").click(function(){
-                <?php
-                $_SESSION["idLoad"] = $idLoad;
-                ?>
-                location.reload();
+            $(".member").click(function(){
+                /*
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange=function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("member #id").innerHTML = this.responseText;
+                    }
+                };
+                xhttp.open("GET", "network.php?idLoad=" + $(this.id), true);
+                xhttp.send();
+                */
+
+                var id = this.id;
+
+                $.ajax({
+                    url: "network.php",
+                    type: "post",
+                    data: { idLoad : id }
+                });
+
+                //location.reload();
             });
         });
     </script>
