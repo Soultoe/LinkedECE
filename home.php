@@ -39,16 +39,15 @@
 		<?php
 	}
 	else{
-		$sql = "SELECT DISTINCT User, Description, Media, DatePublication, DateUser, PlaceUser, Visibility FROM `publication` ORDER BY `DatePublication` DESC";
-		//$res = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+		$sql = "SELECT DISTINCT IDPublication, User, Description, Media, DatePublication, DateUser, PlaceUser, Visibility FROM `publication` ORDER BY `DatePublication` DESC";
+		$admin = mysqli_fetch_assoc(mysqli_query($conn, "SELECT Admin FROM `user` WHERE IDUser = $_SESSION[id]"))['Admin'];
 		?>
 		<div>
 			<?php
 			$tmp = mysqli_query($conn, $sql);
 			while($res = mysqli_fetch_assoc($tmp)){
 				if ($res['User'] == $_SESSION['id'] || in_array($res['User'], $arrayID)) {
-					echo "<div>";
-					$sql = "SELECT NameUser, FirstNameUser FROM `user` WHERE IDUser = $res[User]";
+					$sql = "SELECT NameUser, FirstNameUser, Admin FROM `user` WHERE IDUser = $res[User]";
 					$res2 = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 					echo " $res2[FirstNameUser] $res2[NameUser] : ";
 					if($res['Description'] != NULL)
@@ -58,9 +57,29 @@
 					if($res['PlaceUser'] != NULL)
 						echo " $res[PlaceUser]";
 					if($res['Media'] != NULL){
+						$sql = "SELECT Path FROM Media WHERE IDMedia = $res[Media]";
+						$vidArray = array('mp4', 'ogg');
+						$res3 = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+						$tmp2 = explode('.', $res3['Path']);
+						if(in_array(end($tmp2), $vidArray)) {
+							?>
+							<video controls>
+								<source src="<?php echo $res3['Path']?>" type="video/mp4">Sorry, your browser doesn't support the video element.
+							</video>
+							<?php
+						}
+						else {
+							?>
+							 <img src="<?php echo $res3['Path']?>" alt="PHOTO NON AFFICHEE"> 
+							<?php
+						}
 					}
 					echo " $res[DatePublication]";
-					echo "</div>";
+					if($res['User'] == $_SESSION['id'] || $admin[0] == 1) {
+						?>
+						<a href="deletePost.php?DEL=<?php echo $res['IDPublication'] ?>">CECI EST PRESQU UN BOUTON</a>;
+						<?php
+					}
 				}
 			}
 			?>
