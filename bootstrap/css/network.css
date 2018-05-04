@@ -1,0 +1,49 @@
+.members
+{
+    display: flex;
+
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: #007179;
+}
+
+.member
+{
+    display: flex;
+
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: #007179;
+
+    height: 55px;
+
+    margin-right: 5px;
+
+}
+
+.friendPic
+{
+    height: 48px;
+    width: 48px;
+
+    border-radius: 10px;
+
+    display: block;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 2px;
+}
+
+.nameFriend
+{
+    font-size: large;
+    color: #007179;
+    font-style: italic;
+    font-weight: bold;
+
+    padding-top: 10px;
+
+    margin-right: 2px;
+}

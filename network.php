@@ -78,6 +78,7 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
     //print the relationship and the user's info
     else {
         ?>
+        <link href="bootstrap/css/network.css" rel="stylesheet">
         <div id="connected">
             <?php
             /**
@@ -171,6 +172,7 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
 
 } else { //load the list of member in network
     ?>
+    <link href="bootstrap/css/network.css" rel="stylesheet">
     <div class="members">
         <?php
         $arrayID = null;
@@ -204,9 +206,8 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
                         //$idLoad = $id;
                         ?>
                         <div class="member" id="<?php echo $id; ?>">
-                            <img src="<?php echo $row2['Path'] ?>">
-                            <p><em><?php echo $row['NameUser'] ?></em></p>
-                            <p><?php echo $row['FirstNameUser'] ?></p>
+                            <img src="<?php echo $row2['Path'] ?>" class="friendPic">
+                            <p class="nameFriend"><?php echo $row['FirstNameUser'] ?> <?php echo $row['NameUser'] ?></p>
                         </div>
                         <?php
                     }
