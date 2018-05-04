@@ -13,6 +13,7 @@
     <link href="css/bordersStyle.css" rel="stylesheet"> <!--this is bootstrap CSS-->
     <link href="bootstrap/css/sticky-footer-navbar.css" rel="stylesheet">
     <link href="bootstrap/css/profileSummaryStyle.css" rel="stylesheet">
+    <link href="bootstrap/css/myInformation.css" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -47,13 +48,42 @@
 
 <div class="page">
 
-    <div class="profileSummary">
+    <div class="myInformations profileSummary">
+
         <h2>My Information : </h2>
+        <?php
+        session_start();
+        //include_once dirname(__DIR__).'database.php';
+        include_once "database.php";
+        $admin = false;
+        $id = $_SESSION['id'];
+        $sql = "SELECT * FROM `user` WHERE IDUser = '$id'";
+        $result = mysqli_query($conn, $sql);
+        if($row = mysqli_fetch_assoc($result)) {
+            $media = "SELECT Path FROM media WHERE IDMedia = $row[Background]";
+            $mediaResult = mysqli_query($conn,$media);
+            $media2 = "SELECT Path FROM media WHERE IDMedia = $row[PP]";
+            $mediaResult2 = mysqli_query($conn,$media2);
+            $admin = $row['Admin'];
+            if($row2 = mysqli_fetch_assoc($mediaResult) AND $row3 = mysqli_fetch_assoc($mediaResult2)) {
+                ?>
+
+                <img src="<?php echo $row3['Path'] ?>" alt="Profile Picture" class="pp">
+
+                <p class="alias"><?php echo $row['Pseudo'] ?></p>
+                <p class="name"><?php echo $row['FirstNameUser'] ?> <?php echo $row['NameUser'] ?></p>
+                <p class="mail"><?php echo $row['MailUser'] ?></p>
+                <p class="status">Works at: <?php echo $row['Status'] ?></p>
+
+                <?php
+            }
+                }
+                ?>
     </div>
 
     <div class="content">
 
 <?php
-	session_start();
+	//session_start();
     include_once "database.php";
 ?>
