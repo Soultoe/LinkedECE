@@ -38,12 +38,6 @@
         <button action="logout.php" method="POST" name="submit" class="btn btn-success publishButton">Publier</button>
 
     </form>
-=======
-		<label>Texte</label>
-		<textarea name="text", placeholder = "Ecrivez votre nouvelle publication ici"></textarea>
-		<input type="submit" name="submit" value="Publier">
-	</form>
->>>>>>> 368dff0f76abacc6e0524630ba0f36117872f5d2
 </div>
 <?php
 	$arrayID = array();
@@ -127,7 +121,6 @@
 			}
 			echo "</div>"; //fin div publication
 		}
-<<<<<<< HEAD
 		?>
 	</div>
 </div>
@@ -136,7 +129,5 @@
 
 
 <?php
-=======
->>>>>>> 368dff0f76abacc6e0524630ba0f36117872f5d2
 	include_once "footer.php";
 ?>
