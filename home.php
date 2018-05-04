@@ -19,7 +19,7 @@
 	</form>
 </div>
 <?php
-	$arrayID = null;
+	$arrayID = array();
 	$sql = "SELECT DISTINCT User2 FROM `user` INNER JOIN connection ON `user`.IDUser = connection.User1 WHERE User1 = $_SESSION[id]";
 	$result = mysqli_query($conn, $sql);
 	while($row = mysqli_fetch_assoc($result)){
@@ -32,41 +32,52 @@
 			$arrayID[] = $row2['User1'];
 		}
 	}
-
-	if($arrayID == null) {
-		?>
-		<p>You don't have any friends yet.</p>
+	$sql = "SELECT DISTINCT IDPublication, User, Description, Media, DatePublication, DateUser, PlaceUser, Visibility FROM `publication` ORDER BY `DatePublication` DESC";
+	$admin = mysqli_fetch_assoc(mysqli_query($conn, "SELECT Admin FROM `user` WHERE IDUser = $_SESSION[id]"))['Admin'];
+	?>
+	<div>
 		<?php
-	}
-	else{
-		$sql = "SELECT DISTINCT User, Description, Media, DatePublication, DateUser, PlaceUser, Visibility FROM `publication` ORDER BY `DatePublication` DESC";
-		//$res = mysqli_fetch_assoc(mysqli_query($conn, $sql));
-		?>
-		<div>
-			<?php
-			$tmp = mysqli_query($conn, $sql);
-			while($res = mysqli_fetch_assoc($tmp)){
-				if ($res['User'] == $_SESSION['id'] || in_array($res['User'], $arrayID)) {
-					echo "<div>";
-					$sql = "SELECT NameUser, FirstNameUser FROM `user` WHERE IDUser = $res[User]";
-					$res2 = mysqli_fetch_assoc(mysqli_query($conn, $sql));
-					echo " $res2[FirstNameUser] $res2[NameUser] : ";
-					if($res['Description'] != NULL)
-						echo " $res[Description]";
-					if($res['DateUser'] != NULL)
-						echo " $res[DateUser]";
-					if($res['PlaceUser'] != NULL)
-						echo " $res[PlaceUser]";
-					if($res['Media'] != NULL){
+		$tmp = mysqli_query($conn, $sql);
+		while($res = mysqli_fetch_assoc($tmp)){
+			if ($res['User'] == $_SESSION['id'] || in_array($res['User'], $arrayID)) {
+				$sql = "SELECT NameUser, FirstNameUser, Admin FROM `user` WHERE IDUser = $res[User]";
+				$res2 = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+				echo " $res2[FirstNameUser] $res2[NameUser] : ";
+				if($res['Description'] != NULL)
+					echo " $res[Description]";
+				if($res['DateUser'] != NULL)
+					echo " $res[DateUser]";
+				if($res['PlaceUser'] != NULL)
+					echo " $res[PlaceUser]";
+				if($res['Media'] != NULL){
+					$sql = "SELECT Path FROM Media WHERE IDMedia = $res[Media]";
+					$vidArray = array('mp4', 'ogg');
+					$res3 = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+					$tmp2 = explode('.', $res3['Path']);
+					if(in_array(end($tmp2), $vidArray)) {
+						?>
+						<video controls>
+							<source src="<?php echo $res3['Path']?>" type="video/mp4">Sorry, your browser doesn't support the video element.
+						</video>
+						<?php
 					}
-					echo " $res[DatePublication]";
-					echo "</div>";
+					else {
+						?>
+						 <img src="<?php echo $res3['Path']?>" alt="PHOTO NON AFFICHEE"> 
+						<?php
+					}
+				}
+				echo " $res[DatePublication]";
+				if($res['User'] == $_SESSION['id'] || $admin[0] == 1) {
+					?>
+					<a href="deletePost.php?DEL=<?php echo $res['IDPublication'] ?>">CECI EST PRESQUE UN BOUTON</a>
+					<?php
 				}
 			}
-			?>
-		</div>
-		<?php
-	}
+		}
+		?>
+	</div>
+	<?php
 ?>
 
 
