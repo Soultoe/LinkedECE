@@ -11,7 +11,10 @@
     </form>
 
     <div class="updateProfile">
-	<form action="update.php" method="POST" enctype="multipart/form-data">
+
+        <h2>Update Information</h2>
+
+        <form action="update.php" method="POST" enctype="multipart/form-data">
 		<?php
 			include_once "database.php";
 			$id = $_SESSION['id'];
@@ -65,6 +68,81 @@
 		?>
 		<button type="submit" name="submit" class="btn btn-success">Update</button>
 	</form>
+    </div>
+
+    <div class="updateExperiences">
+
+        <h2>Add or Update Experiences</h2>
+
+        <form action="addExperience.php" method="post">
+
+            <div class="form-group">
+                <label>Company Name</label>
+                <input type="text" name="companyName" placeholder="company Name" class="form-control field">
+            </div>
+
+            <div class="form-group">
+                <label>Experience description</label>
+                <input type="text" name="Edescription" placeholder="Edescription" class="form-control field">
+            </div>
+            <button type="submit" name="submit" class="btn btn-primary">Add</button>
+        </form>
+
+        <form action="" method="post" enctype="multipart/form-data">
+            <?php
+            include_once "database.php";
+            $id = $_SESSION['id'];
+            $exp = "SELECT * FROM `user` WHERE IDUser = '$id'";
+            $result = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+            $companyID = $result['Company'];
+            //$position = mysqli_real_escape_string($conn,$result['Position']);
+            echo '
+
+            <div class="form-group">
+                <label>Nouveau Prénom</label>
+                <input type="text" name="firstName" value="'.$first.'" class="form-control field">
+            </div>
+            
+            ';
+            ?>
+            <button type="submit" name="submit" class="btn btn-success">Update</button>
+        </form>
+    </div>
+
+    <div class="updateRealisations">
+
+        <h2>Add or Update Realisations</h2>
+
+        <form action="addRealisation.php" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label>Projet Name</label>
+                <input type="text" name="project" value="project" class="form-control field">
+            </div>
+
+            <div class="form-group">
+                <label>Project Description</label>
+                <input type="text" name="Pdescription" value="Pdescription" class="form-control field">
+            </div>
+            <button type="submit" name="submit" class="btn btn-primary">Add</button>
+        </form>
+
+        <form action="" method="post" enctype="multipart/form-data">
+            <?php
+            include_once "database.php";
+            $id = $_SESSION['id'];
+            $sql = "SELECT * FROM experience WHERE `User` = $id";
+            $res = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+            echo '
+
+            <div class="form-group">
+                <label>Nouveau Prénom</label>
+                <input type="text" name="firstName" value="'.$first.'" class="form-control field">
+            </div>
+            
+            ';
+            ?>
+            <button type="submit" name="submit" class="btn btn-success">Update</button>
+        </form>
     </div>
 
 
