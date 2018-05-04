@@ -63,17 +63,24 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
         $sql = "SELECT * FROM `user` WHERE IDUser = '$_SESSION[idLoad]'";
         $result = mysqli_query($conn, $sql);
         if ($row = mysqli_fetch_assoc($result)) {
-            ?>
-            <div id="unconnected">
-                <img src="<?php echo $row['PP'] ?>">
-                <img src="<?php echo $row['Background'] ?>">
-                <p><em><?php echo $row['NameUser'] ?></em></p>
-                <p><?php echo $row['FirstNameUser'] ?></p>
+            $media2 = "SELECT Path FROM media WHERE IDMedia = $row[PP]";
+            $mediaResult2 = mysqli_query($conn,$media2);
+            if($row3 = mysqli_fetch_assoc($mediaResult2)) {
+                ?>
+                <link href="bootstrap/css/network.css" rel="stylesheet">
+                <link href="bootstrap/css/you.css" rel="stylesheet">
+                <div id="unconnected">
+                    <div class="nameAndPic">
+                    <img class="friendPic" src="<?php echo $row3['Path'] ?>" alt="Profile Picture">
+                    <p class="nameFriend"><?php echo $row['FirstNameUser'] ?> <?php echo $row['NameUser'] ?></p>
+                    </div>
 
-                <button id="Connect" action="connect('Friends')">Connect as a Friend</button>
-                <button id="Connect" action="connect('Contact')">Connect as a Pro</button>
-            </div>
-            <?php
+                    <button class="btn btn-success" id="Connect" action="connect('Friends')">Connect as a Friend
+                    </button>
+                    <button class="btn btn-primary" id="Connect" action="connect('Contact')">Connect as a Pro</button>
+                </div>
+                <?php
+            }
         }
     }
     //else is a connection
@@ -81,6 +88,7 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
     else {
         ?>
         <link href="bootstrap/css/network.css" rel="stylesheet">
+        <link href="bootstrap/css/you.css" rel="stylesheet">
         <div id="connected">
             <?php
             /**
@@ -102,7 +110,7 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
                 if ($row['Relationship']) $relationship = $row['Relationship'];
             }
             ?>
-
+            <h1 style="margin-left: 20px;">Informations</h1>
             <div id="relationship">
                 <p>Your are a <?php echo $relationship ?> of this person</p>
             </div>
@@ -113,61 +121,83 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
             $sql = "SELECT * FROM `user` WHERE IDUser = '$_SESSION[idLoad]'";
             $result = mysqli_query($conn, $sql);
             if ($row = mysqli_fetch_assoc($result)) {
-                ?>
+                $media = "SELECT Path FROM media WHERE IDMedia = $row[Background]";
+                $mediaResult = mysqli_query($conn,$media);
+                $media2 = "SELECT Path FROM media WHERE IDMedia = $row[PP]";
+                $mediaResult2 = mysqli_query($conn,$media2);
+                $admin = $row['Admin'];
+                if($row2 = mysqli_fetch_assoc($mediaResult) AND $row3 = mysqli_fetch_assoc($mediaResult2)) {
+                    ?>
 
-                <!-- Information User -->
+                    <!-- Information User -->
+                    <img class="backgroundPicture" src="<?php echo $row2['Path'] ?>" alt="Background Picture">
 
-                <img id="profilePicture" src="<?php echo $row['PP'] ?>" alt="Profile Picture" height="42" width="42">
-                <img id="backgroundPicture" src="<?php echo $row['Background'] ?>" alt="Background Picture" height="60"
-                     width="80%">
+                    <div class="userInfo">
 
-                <p id="NameUser"><?php echo $row['NameUser'] ?></p>
-                <p id="FirstNameUser"><?php echo $row['FirstNameUser'] ?></p>
-                <p id="Pseudo"><?php echo $row['Pseudo'] ?></p>
-                <p id="MailUser"><?php echo $row['MailUser'] ?></p>
-                <p id="Status"><?php echo $row['Status'] ?></p>
+                        <img class="profilePicture" src="<?php echo $row3['Path'] ?>" alt="Profile Picture">
 
 
-                <?php
+                        <div class="contactInfo">
+
+                            <p id="NameUser"><?php echo $row['NameUser'] ?></p>
+                            <p id="FirstNameUser"><?php echo $row['FirstNameUser'] ?></p>
+                            <p id="Pseudo"><?php echo $row['Pseudo'] ?></p>
+                            <p id="MailUser"><?php echo $row['MailUser'] ?></p>
+                        </div>
+
+                        <div class="otherInfo">
+                            <p id="Status"><?php echo $row['Status'] ?></p>
+                        </div>
+                    </div>
+
+
+                    <?php
+                }
             }
 
-            $sql = "SELECT * FROM Job inner join `user` on Job.User = `user`.IDUser inner join Company on Company.IDCompany = Job.Company WHERE Job.User = '$_SESSION[idLoad]' ORDER BY DateEnd Desc";
-            $result = mysqli_query($conn, $sql);
-            while ($row = mysqli_fetch_assoc($result)) {
+        $sql = "SELECT * FROM experience inner join user on experience.User = user.IDUser inner join Company on Company.IDCompany = experience.Company WHERE experience.User = '$_SESSION[idLoad]'";
+        $result = mysqli_query($conn, $sql);?>
+        <h1 style="margin-left: 20px;">Experiences</h1>
+        <div id="experiences">
+
+            <?php while($row = mysqli_fetch_assoc($result)){
                 ?>
                 <!-- Information Job -->
-                <div id="jobs">
-                    <div id="job">
-                        <p id="titleJob"><em><?php echo $row['Pseudo'] ?></em> a eu une expérience chez
-                            <em><?php echo $row['NameCompany'] ?></em></p><br>
-                        <p id="descriptionJob"><em><?php echo $row['Position'] ?></em>
-                            : <?php echo $row['Description'] ?></p>
-                        <p id="dateJob"> Du : <?php echo $row['DateBegin'] ?> Au : <?php echo $row['DateEnd'] ?></p>
-                    </div>
+
+                <div id="experience">
+                    <p id="company"> <em><?php echo $row['Pseudo']?></em> a eu une expérience chez <i id="companyName"><?php echo $row['NameCompany']?></i></p>
+                    <p id="position"> as <?php echo $row['Position']?></p>
                 </div>
+
                 <?php
-            }
+            }?>
+        </div>
+                <?php
+
 
             $sql = "SELECT * FROM Realisation inner join `user` on Realisation.User = `user`.IDUser WHERE IDUser = '$_SESSION[idLoad]'";
-            $result = mysqli_query($conn, $sql);
-            while ($row = mysqli_fetch_assoc($result)) {
+            $result = mysqli_query($conn, $sql);?>
+            <h1 style="margin-left: 20px;">Realisations</h1>
+                <div id="realisations">
+            <?php while ($row = mysqli_fetch_assoc($result)) {
 
                 $sql2 = "SELECT * FROM Realisation inner join `user` on `user`.IDUser = Realisation.User WHERE Projet = $row[Projet]";
                 $result2 = mysqli_query($conn, $sql2);
                 ?>
-                <!-- <!-- Information Realisation --> -->
-                <div id="realisations">
+                <!-- <!-- Information Realisation -->
+
                     <div id="realisation">
                         <p id="descriptionRealisation"><?php echo $row['Description'] ?></p>
                         <p id="membersRealisation"> Avec : <?php while ($row2 = mysqli_fetch_assoc($result2)) {
-                                echo $row2['NameUser'];
+                                echo "$row2[NameUser], ";
                             } ?> </p>
                     </div>
-                </div>
                 <?php
             }
 
+
             ?>
+                </div>
         </div>
         <?php
     }
