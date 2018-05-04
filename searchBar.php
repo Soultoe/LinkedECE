@@ -20,7 +20,7 @@ $idLoad = null;
         $(document).ready(function () {
             $(".member").click(function () {
                 var id = this.id;
-                alert(id);
+                //alert(id);
 
                 $.ajax({
                     url: "network.php",
