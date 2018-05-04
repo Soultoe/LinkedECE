@@ -30,6 +30,7 @@
         <div class="place">
         <label>Insérer le lieu</label>
 		<input type="text" name="place">
+<<<<<<< HEAD
         </div>
 
         </div>
@@ -37,6 +38,12 @@
         <button action="logout.php" method="POST" name="submit" class="btn btn-success publishButton">Publier</button>
 
     </form>
+=======
+		<label>Texte</label>
+		<textarea name="text", placeholder = "Ecrivez votre nouvelle publication ici"></textarea>
+		<input type="submit" name="submit" value="Publier">
+	</form>
+>>>>>>> 368dff0f76abacc6e0524630ba0f36117872f5d2
 </div>
 <?php
 	$arrayID = array();
@@ -54,11 +61,9 @@
 	}
 	$sql = "SELECT DISTINCT IDPublication, User, Description, Media, DatePublication, DateUser, PlaceUser, Visibility FROM `publication` ORDER BY `DatePublication` DESC";
 	$admin = mysqli_fetch_assoc(mysqli_query($conn, "SELECT Admin FROM `user` WHERE IDUser = $_SESSION[id]"))['Admin'];
-	?>
-	<div>
-		<?php
 		$tmp = mysqli_query($conn, $sql);
 		while($res = mysqli_fetch_assoc($tmp)){
+			echo "<div>"; //debut div Publication
 			if ($res['User'] == $_SESSION['id'] || in_array($res['User'], $arrayID)) {
 				$sql = "SELECT NameUser, FirstNameUser, Admin FROM `user` WHERE IDUser = $res[User]";
 				$res2 = mysqli_fetch_assoc(mysqli_query($conn, $sql));
@@ -90,11 +95,39 @@
 				echo " $res[DatePublication]";
 				if($res['User'] == $_SESSION['id'] || $admin[0] == 1) {
 					?>
-					<a href="deletePost.php?DEL=<?php echo $res['IDPublication'] ?>">CECI EST PRESQUE UN BOUTON</a>
+					<form action="deletePost.php" method="POST">
+						<input type="hidden" name= "DEL" value="<?php echo $res['IDPublication'] ?>">
+						<input type="submit" name="submit" value="DELETE POST">
+					</form>
 					<?php
 				}
+				?>
+					<form action="newComment.php" method="POST">
+						<input type="hidden" name= "User" value="<?php echo $_SESSION['id'] ?>">
+						<input type="hidden" name= "post" value="<?php echo $res['IDPublication'] ?>">
+						<textarea name="comment", placeholder = "Ecrivez votre commentaire ici"></textarea>
+						<input type="submit" name="submit" value="commenter">
+					</form>
+				<?php
+				$sql = "SELECT * FROM comment INNER JOIN `user` ON IDUser = User WHERE Publication=$res[IDPublication] ORDER BY `DateComment` ASC";
+				$comments = mysqli_query($conn, $sql);
+				//$test = mysqli_fetch_assoc($comments);
+				//var_dump($test);
+				while ($row = mysqli_fetch_assoc($comments)) {
+					?>
+					<div>
+						<p><?php echo $row['Pseudo'] ?> has left a comment : <?php echo $row['Content'] ?></p>
+						<form action = "deleteComment" method="POST">
+							<input type="hidden" name="DEL" value=<?php echo $row['IDComment'] ?>>
+							<input type="submit" name="submit" value="Delete Comment">
+						</form>
+					</div>
+				<?php
+				}
 			}
+			echo "</div>"; //fin div publication
 		}
+<<<<<<< HEAD
 		?>
 	</div>
 </div>
@@ -103,5 +136,7 @@
 
 
 <?php
+=======
+>>>>>>> 368dff0f76abacc6e0524630ba0f36117872f5d2
 	include_once "footer.php";
 ?>
