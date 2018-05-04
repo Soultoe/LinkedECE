@@ -28,10 +28,12 @@ function connect($relationString)
         echo "Connection sent";
     }
 }
+
 /*
 if(isset($_SESSION['idLoad'])){
     unset($_SESSION['idLoad']);
-}*/
+}
+*/
 
 if (isset($_POST['idLoad'])) {
     $_SESSION["idLoad"] = $_POST['idLoad'];
@@ -243,7 +245,7 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
                         url: "network.php",
                         type: "post",
                         data: {idLoad: id}
-                    }).done(function (msg) {
+                    }).done(function () {
 
                         location.reload(true);
                     });

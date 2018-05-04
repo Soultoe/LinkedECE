@@ -16,3 +16,5 @@ https://api.jquery.com/jquery.ajax/
 https://www.w3schools.com/jquery/jquery_ajax_get_post.asp
 https://stackoverflow.com/questions/15576548/how-to-pass-parameters-in-get-requests-with-jquery
 https://www.w3schools.com/jsref/met_loc_reload.asp
+
+LF

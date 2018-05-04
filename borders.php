@@ -32,8 +32,8 @@
                 <li><a href="jobs.php">Jobs</a></li>
             </ul>
             <div class="rightSideNavbar">
-            <form class="form-inline my-2 my-lg-0 searchBar" method="post" action="searchBar.php">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="searchBarField">
+            <form class="form-inline my-2 my-lg-0 searchBar" method="POST" action="searchBar.php">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search.." aria-label="Search" name="searchBarField">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
                 <ul class="nav">
