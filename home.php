@@ -128,7 +128,6 @@ if (!isset($_SESSION['id'])) {
     </div>
 
 <?php
-<<<<<<< HEAD
 	$arrayID = array();
 	$sql = "SELECT DISTINCT User2 FROM `user` INNER JOIN connection ON `user`.IDUser = connection.User1 WHERE User1 = $_SESSION[id]";
 	$result = mysqli_query($conn, $sql);
@@ -225,8 +224,6 @@ if (!isset($_SESSION['id'])) {
 	</div>
 </div>
 	<?php
-=======
->>>>>>> a236f3c1fdf090e9942b5b8e72217eeca61d7c35
 ?>
 
 
