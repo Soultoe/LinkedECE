@@ -13,22 +13,6 @@ if (!isset($_SESSION['id'])) {
 }
 
 //$idLoad = null;
-
-function connect($relationString)
-{
-    $sql = "INSERT INTO connectionrequest(User1, User2, Relationship) VALUES ($_SESSION[id], $_SESSION[idLoad], $relationString)";
-    $server = "localhost";
-    $username = "root";
-    $pwd = "";
-    $db = "linkedece";
-    $conn = mysqli_connect($server, $username, $pwd, $db);
-
-    $result = mysqli_query($conn, $sql);
-    if ($result) {
-        echo "Connection sent";
-    }
-}
-
 /*
 if(isset($_SESSION['idLoad'])){
     unset($_SESSION['idLoad']);
@@ -64,14 +48,14 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
         $result = mysqli_query($conn, $sql);
         if ($row = mysqli_fetch_assoc($result)) {
             ?>
-            <div id="unconnected">
+            <div class="unconnected" id="<?php echo $_SESSION['idLoad']?>">
                 <img src="<?php echo $row['PP'] ?>">
                 <img src="<?php echo $row['Background'] ?>">
                 <p><em><?php echo $row['NameUser'] ?></em></p>
                 <p><?php echo $row['FirstNameUser'] ?></p>
 
-                <button id="Connect" action="connect('Friends')">Connect as a Friend</button>
-                <button id="Connect" action="connect('Contact')">Connect as a Pro</button>
+                <button id="ConnectFriend">Connect as a Friend</button>
+                <button id="ConnectPro">Connect as a Pro</button>
             </div>
             <?php
         }
@@ -209,7 +193,7 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
                         ?>
                         <div class="member" id="<?php echo $id; ?>">
                             <img src="<?php echo $row2['Path'] ?>" class="friendPic">
-                            <p class="nameFriend"><?php echo $row['FirstNameUser'] ?> <?php echo $row['NameUser'] ?></p>
+                            <p class="nameFriend"><?php echo $row['FirstNameUser'] ?><?php echo $row['NameUser'] ?></p>
                         </div>
                         <?php
                     }
@@ -225,20 +209,7 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
     <div id="jquery">
         <script>
             $(document).ready(function () {
-
-
                 $(".member").click(function () {
-                    /*
-                     var xhttp = new XMLHttpRequest();
-                     xhttp.onreadystatechange=function() {
-                     if (this.readyState == 4 && this.status == 200) {
-                     document.getElementById("member #id").innerHTML = this.responseText;
-                     }
-                     };
-                     xhttp.open("GET", "network.php?idLoad=" + $(this.id), true);
-                     xhttp.send();
-                     */
-
                     var id = this.id;
                     //alert(id);
 
@@ -251,6 +222,37 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
                         location.reload(true);
                     });
 
+                });
+
+                $("#ConnectFriend").click(function () {
+                    var id = this.id;
+                    //alert(id);
+                    $.ajax({
+                        type: "POST",
+                        url: "connect.php",
+                        data: {
+                            Relationship: "Friend",
+                            Id : id
+                        }
+                    }).done(function (msg) {
+                        //alert("Data Saved: " + msg);
+                        //alert("Connection request sent");
+                    });
+                });
+
+                $("#ConnectPro").click(function () {
+                    var id = this.id;
+                    $.ajax({
+                        type: "POST",
+                        url: "connect.php",
+                        data: {
+                            Relationship: "Contact",
+                            Id : id
+                        }
+                    }).done(function (msg) {
+                        //alert("Data Saved: " + msg);
+                        //alert("Connection request sent");
+                    });
                 });
             });
         </script>

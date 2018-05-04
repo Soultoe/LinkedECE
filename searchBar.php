@@ -39,7 +39,7 @@ $idLoad = null;
 $string = mysqli_real_escape_string($conn, $_POST["searchBarField"]);
 
 if (empty($string)) {
-    header("Location: index.php?error=emptySearch");
+    header("Location: home.php?error=emptySearch");
     exit();
 } else {
     $string = '%' . $string . '%';
