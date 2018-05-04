@@ -16,8 +16,9 @@ if(!isset($_SESSION['id'])){
  * Only an admin as the right to post a job
  * He can create the corresponding company and then post the job
  *
- * A normal user can see the avalable jobs
+ * A normal user can see the available jobs
  */
+
 
 $sql = "SELECT Admin FROM user WHERE IDUser = '$_SESSION[id]'";
 $result = mysqli_query($conn, $sql);
@@ -25,21 +26,28 @@ if($row = mysqli_fetch_assoc($result)) {
     if($row['Admin'] == true){ //Is an admin
 
         ?>
+        <link href="bootstrap/css/jobs.css" rel="stylesheet">
         <div id="companies">
             <?php
             $sql = "SELECT * FROM company";
             $result = mysqli_query($conn, $sql);
             while($row = mysqli_fetch_assoc($result)) {
-                ?>
-                <div id="company">
-                    <img src="<?php echo $row['PP'] ?>">
-                    <p><em><?php echo $row['NameCompany']?></em></p>
-                </div>
-                <?php
+                $media = "SELECT Path FROM media WHERE IDMedia = $row[PP]";
+                $mediaResult = mysqli_query($conn,$media);
+                while($row2 = mysqli_fetch_assoc($mediaResult)) {
+                    ?>
+                    <div id="company">
+                        <img class="companyLogo" src="<?php echo $row2['Path'] ?>">
+                        <p id="companyName"><em><?php echo $row['NameCompany'] ?></em></p>
+                    </div>
+                    <?php
+                }
             }
             ?>
             <div id="addCompany">
-                <button> add Company </button>
+                <form action="addCompany.php" method="post">
+                    <input type="submit" name="addCompany" class="btn btn-success" value="add Company"/>
+                </form>
             </div>
         </div>
         <?php
@@ -53,19 +61,21 @@ if($row = mysqli_fetch_assoc($result)) {
             while($row = mysqli_fetch_assoc($result)) {
                 ?>
                 <div id="job">
-                    <p><em><?php echo $row['NameCompany']?></em></p>
-                    <p><?php echo $row['Position']?></p>
-                    <p><?php echo $row['Description']?></p>
-                    <p><?php echo $row['DateBegin']?></p>
-                    <p><?php echo $row['DateEnd']?></p>
-                    <p><?php echo $row['NameUser']?></p>
-                    <p><?php echo $row['MailCompany']?></p>
+                    <p id="companyName" class="strong"><?php echo $row['NameCompany']?> is searching for a:</p>
+                    <p class="jobDescription"><?php echo $row['Position']?></p>
+                    <p class="jobDescription2"><?php echo $row['Description']?></p>
+                    <p class="jobDescription2">From: <?php echo $row['DateBegin']?></p>
+                    <p class="jobDescription2">To: <?php echo $row['DateEnd']?></p>
+                    <p class="jobDescription">Offered by: <?php echo $row['NameUser']?></p>
+                    <p class="jobDescription"><?php echo $row['MailCompany']?></p>
                 </div>
                 <?php
             }
             ?>
             <div id="addJob">
-                <button> add Job </button>
+                <form action="addJob.php" method="post">
+                    <input type="submit" name="addJob" class="btn btn-success" value="add Job" id="addJobButton"/>
+                </form>
             </div>
         </div>
         <?php
@@ -84,6 +94,7 @@ if($row = mysqli_fetch_assoc($result)) {
         if($row = mysqli_fetch_assoc($result)) {
             if($row['Company'] != null){ //has a company
                 ?>
+                <link href="bootstrap/css/jobs.css" rel="stylesheet">
                 <div id="jobs">
                     <?php
                     $comp = null;
@@ -97,39 +108,42 @@ if($row = mysqli_fetch_assoc($result)) {
                     while($row = mysqli_fetch_assoc($result)) {
                         ?>
                         <div id="job">
-                            <p><em><?php echo $row['NameCompany']?></em></p>
-                            <p><?php echo $row['Position']?></p>
-                            <p><?php echo $row['Description']?></p>
-                            <p><?php echo $row['DateBegin']?></p>
-                            <p><?php echo $row['DateEnd']?></p>
-                            <p><?php echo $row['NameUser']?></p>
-                            <p><?php echo $row['MailCompany']?></p>
+                            <p id="companyName" class="strong"><em><?php echo $row['NameCompany']?></em></p>
+                            <p class="jobDescription"><?php echo $row['Position']?></p>
+                            <p class="jobDescription2"><?php echo $row['Description']?></p>
+                            <p class="jobDescription2"><?php echo $row['DateBegin']?></p>
+                            <p class="jobDescription2"><?php echo $row['DateEnd']?></p>
+                            <p class="jobDescription"><?php echo $row['NameUser']?></p>
+                            <p class="jobDescription"><?php echo $row['MailCompany']?></p>
                         </div>
                         <?php
                     }
                     ?>
                     <div id="addJob">
-                        <button> add Job </button>
+                        <form action="addJob.php" method="post">
+                            <input type="submit" name="addJob" class="btn btn-success" value="add Job" id="addJobButton"/>
+                        </form>
                     </div>
                 </div>
                 <?php
             }
             else{ //doesn't have a company
                 ?>
+                <link href="bootstrap/css/jobs.css" rel="stylesheet">
                 <div id="jobs">
                     <?php
                     $sql = "SELECT * FROM job INNER JOIN user ON IDUser = job.User INNER JOIN company ON company.IDCompany = job.Company ";
                     $result = mysqli_query($conn, $sql);
                     while($row = mysqli_fetch_assoc($result)) {
                         ?>
-                        <div id="job">
-                            <p><em><?php echo $row['NameCompany']?></em></p>
-                            <p><?php echo $row['Position']?></p>
-                            <p><?php echo $row['Description']?></p>
-                            <p><?php echo $row['DateBegin']?></p>
-                            <p><?php echo $row['DateEnd']?></p>
-                            <p><?php echo $row['NameUser']?></p>
-                            <p><?php echo $row['MailCompany']?></p>
+                        <div id="job" class="test">
+                            <p id="companyName" class="strong"><em><?php echo $row['NameCompany']?></em></p>
+                            <p class="jobDescription"><?php echo $row['Position']?></p>
+                            <p class="jobDescription2"><?php echo $row['Description']?></p>
+                            <p class="jobDescription2"><?php echo $row['DateBegin']?></p>
+                            <p class="jobDescription2"><?php echo $row['DateEnd']?></p>
+                            <p class="jobDescription"><?php echo $row['NameUser']?></p>
+                            <p class="jobDescription"><?php echo $row['MailCompany']?></p>
                         </div>
                         <?php
                     }

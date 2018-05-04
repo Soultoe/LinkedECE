@@ -37,8 +37,8 @@ while($row = mysqli_fetch_assoc($result)){
 ?>
 <div id="results">
 <?php
-foreach ($arrayID as $i => $id){
-    $sql = "SELECT NameUser, FirstNameUser, PP FROM 'user' WHERE IDUser = $id ";
+foreach ($arrayID as $id){
+    $sql = "SELECT NameUser, FirstNameUser, PP FROM 'user' WHERE IDUser = $id";
     $result = mysqli_query($conn, $sql);
 
     if($row = mysqli_fetch_assoc($result)){

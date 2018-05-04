@@ -13,7 +13,7 @@
 .profilePicture
 {
     height: 200px;
-    width: 150px;
+    width: 175px;
 
     margin-right: 50px;
     border-radius: 10px 10px 10px 10px;
@@ -135,4 +135,13 @@
     font-size: small;
     font-style: italic;
     color: #007179;
+}
+
+.buttons
+{
+    margin-left: 20px;
+    border-width: 2px;
+    border-color: #007179;
+    border-radius: 10px;
+    box-shadow: 2px 2px 0px lightgray;
 }
