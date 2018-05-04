@@ -72,7 +72,7 @@
 
     <div class="updateExperiences">
 
-        <h2>Add or Update Experiences</h2>
+        <h2>Add or Delete Experiences</h2>
 
         <form action="addExperience.php" method="post">
 
@@ -88,34 +88,28 @@
             <button type="submit" name="submit" class="btn btn-primary">Add</button>
         </form>
 
-        <form action="" method="post" enctype="multipart/form-data">
-            <?php
-            include_once "database.php";
-            $id = $_SESSION['id'];
-            $exp = "SELECT * FROM `user` WHERE IDUser = '$id'";
-            $result = mysqli_fetch_assoc(mysqli_query($conn, $sql));
-            $companyID = $result['Company'];
-            //$position = mysqli_real_escape_string($conn,$result['Position']);
-            echo '
+        <form action="deleteExperience.php" method="post" enctype="multipart/form-data">
 
             <div class="form-group">
-                <label>Nouveau Prénom</label>
-                <input type="text" name="firstName" value="'.$first.'" class="form-control field">
+                <label>Company</label>
+                <input type="text" name="company" placeholder="company Name" class="form-control field">
             </div>
-            
-            ';
-            ?>
-            <button type="submit" name="submit" class="btn btn-success">Update</button>
+            <div class="form-group">
+                <label>Position</label>
+                <input type="text" name="position" placeholder="Position" class="form-control field">
+            </div>
+            <button type="submit" name="submit" class="btn btn-danger">Delete</button>
+
         </form>
     </div>
 
     <div class="updateRealisations">
 
-        <h2>Add or Update Realisations</h2>
+        <h2>Add or Delete Realisations</h2>
 
         <form action="addRealisation.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <label>Projet Name</label>
+                <label>Project Name</label>
                 <input type="text" name="project" value="project" class="form-control field">
             </div>
 
@@ -126,22 +120,12 @@
             <button type="submit" name="submit" class="btn btn-primary">Add</button>
         </form>
 
-        <form action="" method="post" enctype="multipart/form-data">
-            <?php
-            include_once "database.php";
-            $id = $_SESSION['id'];
-            $sql = "SELECT * FROM experience WHERE `User` = $id";
-            $res = mysqli_fetch_assoc(mysqli_query($conn, $sql));
-            echo '
-
+        <form action="deleteRealisation.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <label>Nouveau Prénom</label>
-                <input type="text" name="firstName" value="'.$first.'" class="form-control field">
+                <label>Realisation to delete (project number)</label>
+                <input type="number" name="projectID" placeholder="project number" class="form-control field">
             </div>
-            
-            ';
-            ?>
-            <button type="submit" name="submit" class="btn btn-success">Update</button>
+            <button type="submit" name="submit" class="btn btn-danger">Delete</button>
         </form>
     </div>
 
