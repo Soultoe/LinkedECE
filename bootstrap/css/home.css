@@ -19,6 +19,17 @@
 .content
 {
     display: flex;
+    margin-bottom: 10px;
+}
+
+.file
+{
+    margin-bottom: 10px;
+}
+
+.place
+{
+    margin-top: 10px;
 }
 
 .precisions
@@ -44,6 +55,7 @@
 {
     margin-top: 20px;
     margin-left: 20px;
+    margin-bottom: 20px;
 }
 
 .feed

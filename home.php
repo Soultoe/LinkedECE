@@ -19,18 +19,18 @@ if (!isset($_SESSION['id'])) {
                 <div class="precisions">
 
                     <div class="file">
-                        <label>Insérer une photo/courte video</label>
+                        <i class="glyphicon glyphicon-plus" style="height: 20px; width: 20px;"></i>
                         <input type="file" name="doc">
                     </div>
 
                     <div class="date">
-                        <label>Insérer la date</label>
+                        <i class="glyphicon glyphicon-calendar" style="height: 20px; width: 20px;"></i>
                         <input type="date" name="date">
                     </div>
 
 
         <div class="place">
-        <label>Insérer le lieu</label>
+            <i class="glyphicon glyphicon-map-marker" style="height: 20px; width: 20px;"></i>
 		<input type="text" name="place">
         </div>
 
@@ -41,7 +41,7 @@ if (!isset($_SESSION['id'])) {
                 </button>
 
             </form>
-
+        </div>
 <?php
 	$arrayID = array();
 	$sql = "SELECT DISTINCT User2 FROM `user` INNER JOIN connection ON `user`.IDUser = connection.User1 WHERE User1 = $_SESSION[id]";
@@ -137,7 +137,6 @@ if (!isset($_SESSION['id'])) {
 			echo "</div>"; //fin div publication
 		}
 		?>
-	</div>
 </div>
 	<?php
 ?>
