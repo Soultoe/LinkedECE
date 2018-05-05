@@ -13,7 +13,7 @@ if (!isset($_SESSION['id'])) {
 }
 
 //$idLoad = null;
-
+/*
 function connect($relationString)
 {
     $sql = "INSERT INTO connectionrequest(User1, User2, Relationship) VALUES ($_SESSION[id], $_SESSION[idLoad], $relationString)";
@@ -28,9 +28,9 @@ function connect($relationString)
         echo "Connection sent";
     }
 }
-
+*/
 /*
-if(isset($_SESSION['idLoad'])){
+if(($_SESSION['idLoad']) != null){
     unset($_SESSION['idLoad']);
 }
 */
