@@ -64,15 +64,15 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
         $result = mysqli_query($conn, $sql);
         if ($row = mysqli_fetch_assoc($result)) {
             $media2 = "SELECT Path FROM media WHERE IDMedia = $row[PP]";
-            $mediaResult2 = mysqli_query($conn,$media2);
-            if($row3 = mysqli_fetch_assoc($mediaResult2)) {
+            $mediaResult2 = mysqli_query($conn, $media2);
+            if ($row3 = mysqli_fetch_assoc($mediaResult2)) {
                 ?>
                 <link href="bootstrap/css/network.css" rel="stylesheet">
                 <link href="bootstrap/css/you.css" rel="stylesheet">
                 <div id="unconnected">
                     <div class="nameAndPic">
-                    <img class="friendPic" src="<?php echo $row3['Path'] ?>" alt="Profile Picture">
-                    <p class="nameFriend"><?php echo $row['FirstNameUser'] ?> <?php echo $row['NameUser'] ?></p>
+                        <img class="friendPic" src="<?php echo $row3['Path'] ?>" alt="Profile Picture">
+                        <p class="nameFriend"><?php echo $row['FirstNameUser'] ?><?php echo $row['NameUser'] ?></p>
                     </div>
 
                     <button id="ConnectFriend">Connect as a Friend</button>
@@ -91,10 +91,14 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
         <div id="connected">
             <?php
             /**
-             * CODE de you.php
+             * CODE of you.php
              *
              */
 
+            /**
+             * Handle the relationship
+             *
+             */
             //put the Relationship with the current user
             $relationship = null;
             $sql = "SELECT Relationship FROM connection WHERE User1 = $_SESSION[idLoad] AND User2 = $_SESSION[id]";
@@ -116,16 +120,20 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
 
             <?php
 
-            //exactly the same code as user/index.php
+            /**
+             * exactly the same code as you.php
+             *
+             * Basic User information
+             */
             $sql = "SELECT * FROM `user` WHERE IDUser = '$_SESSION[idLoad]'";
             $result = mysqli_query($conn, $sql);
             if ($row = mysqli_fetch_assoc($result)) {
                 $media = "SELECT Path FROM media WHERE IDMedia = $row[Background]";
-                $mediaResult = mysqli_query($conn,$media);
+                $mediaResult = mysqli_query($conn, $media);
                 $media2 = "SELECT Path FROM media WHERE IDMedia = $row[PP]";
-                $mediaResult2 = mysqli_query($conn,$media2);
+                $mediaResult2 = mysqli_query($conn, $media2);
                 $admin = $row['Admin'];
-                if($row2 = mysqli_fetch_assoc($mediaResult) AND $row3 = mysqli_fetch_assoc($mediaResult2)) {
+                if ($row2 = mysqli_fetch_assoc($mediaResult) AND $row3 = mysqli_fetch_assoc($mediaResult2)) {
                     ?>
 
                     <!-- Information User -->
@@ -154,36 +162,43 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
                 }
             }
 
-        $sql = "SELECT * FROM experience inner join user on experience.User = user.IDUser inner join Company on Company.IDCompany = experience.Company WHERE experience.User = '$_SESSION[idLoad]'";
-        $result = mysqli_query($conn, $sql);?>
-        <h1 style="margin-left: 20px;">Experiences</h1>
-        <div id="experiences">
+            /**
+             * Handle Experience
+             */
+            $sql = "SELECT * FROM experience inner join user on experience.User = user.IDUser inner join Company on Company.IDCompany = experience.Company WHERE experience.User = '$_SESSION[idLoad]'";
+            $result = mysqli_query($conn, $sql); ?>
+            <h1 style="margin-left: 20px;">Experiences</h1>
+            <div id="experiences">
 
-            <?php while($row = mysqli_fetch_assoc($result)){
-                ?>
-                <!-- Information Job -->
+                <?php while ($row = mysqli_fetch_assoc($result)) {
+                    ?>
+                    <!-- Information Job -->
 
-                <div id="experience">
-                    <p id="company"> <em><?php echo $row['Pseudo']?></em> a eu une expérience chez <i id="companyName"><?php echo $row['NameCompany']?></i></p>
-                    <p id="position"> as <?php echo $row['Position']?></p>
-                </div>
+                    <div id="experience">
+                        <p id="company"><em><?php echo $row['Pseudo'] ?></em> a eu une expérience chez <i
+                                    id="companyName"><?php echo $row['NameCompany'] ?></i></p>
+                        <p id="position"> as <?php echo $row['Position'] ?></p>
+                    </div>
 
-                <?php
-            }?>
-        </div>
-                <?php
+                    <?php
+                } ?>
+            </div>
+            <?php
 
-
+            /**
+             * Handle Realisation
+             */
             $sql = "SELECT * FROM Realisation inner join `user` on Realisation.User = `user`.IDUser WHERE IDUser = '$_SESSION[idLoad]'";
-            $result = mysqli_query($conn, $sql);?>
+            $result = mysqli_query($conn, $sql);
+            ?>
             <h1 style="margin-left: 20px;">Realisations</h1>
-                <div id="realisations">
-            <?php while ($row = mysqli_fetch_assoc($result)) {
+            <div id="realisations">
+                <?php while ($row = mysqli_fetch_assoc($result)) {
 
-                $sql2 = "SELECT * FROM Realisation inner join `user` on `user`.IDUser = Realisation.User WHERE Projet = $row[Projet]";
-                $result2 = mysqli_query($conn, $sql2);
-                ?>
-                <!-- <!-- Information Realisation -->
+                    $sql2 = "SELECT * FROM Realisation inner join `user` on `user`.IDUser = Realisation.User WHERE Projet = $row[Projet]";
+                    $result2 = mysqli_query($conn, $sql2);
+                    ?>
+                    <!-- <!-- Information Realisation -->
 
                     <div id="realisation">
                         <p id="descriptionRealisation"><?php echo $row['Description'] ?></p>
@@ -191,12 +206,38 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
                                 echo "$row2[NameUser], ";
                             } ?> </p>
                     </div>
+                    <?php
+                }
+
+
+                ?>
+            </div>
+            <?php
+            /**
+             * Handle the admin possibity to Upgrade a user, Downgrade an Admin and Delete a User
+             */
+            $sql ="SELECT * FROM user WHERE IDUser = $_SESSION[id]";
+            $result = mysqli_query($conn, $sql);
+            if($row = mysqli_fetch_assoc($result)){
+                if($row['Admin'][0] == 1){
+                ?>
+                    <p><em>Admin powers : </em></p><br>
+                    <form action="upgradeAdmin.php" method="post" class="upgradeAdmin">
+                        <button type="submit" name="submit" class="btn btn-info btn-sm upgradeAdmin">Upgrade User to Admin</button>
+                    </form>
+
+                    <form action="downgradeAdmin.php" method="post" class="downgradeAdmin">
+                        <button type="submit" name="submit" class="btn btn-warning btn-sm downgradeAdmin">Downgrade Admin to User</button>
+                    </form>
+
+                    <form action="deleteAccount.php" method="post" class="deleteAccount">
+                        <button type="submit" name="submit" class="btn btn-danger btn-sm deleteAccount">Delete this account</button>
+                    </form>
                 <?php
+                }
             }
 
-
             ?>
-                </div>
         </div>
         <?php
     }
@@ -238,10 +279,10 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
                         ?>
                         <div class="member" id="<?php echo $id; ?>">
                             <img src="<?php echo $row2['Path'] ?>" class="friendPic">
-                            <p class="nameFriend"><?php echo $row['FirstNameUser'] ?> <?php echo $row['NameUser'] ?></p>
+                            <p class="nameFriend"><?php echo $row['FirstNameUser'] ?><?php echo $row['NameUser'] ?></p>
 
                             <form action="deleteFriend.php" method="post" class="deleteFriendButton">
-                                <button type="submit" name="submit" class="btn btn-danger deleteFriendButton">Delete</button>
+                                <button type="submit" name="submit" class="btn btn-danger btn-xs deleteFriendButton">Delete</button>
                             </form>
                         </div>
                         <?php
@@ -281,7 +322,7 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
                         url: "connect.php",
                         data: {
                             Relationship: "Friend",
-                            Id : id
+                            Id: id
                         }
                     }).done(function () {
                         //alert("Data Saved: " + msg);
@@ -298,7 +339,7 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
                         url: "connect.php",
                         data: {
                             Relationship: "Contact",
-                            Id : id
+                            Id: id
                         }
                     }).done(function () {
                         //alert("Data Saved: " + msg);
