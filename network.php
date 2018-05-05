@@ -313,4 +313,5 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
 <?php
 include_once "footer.php";
 
+
 ?>

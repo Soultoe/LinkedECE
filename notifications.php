@@ -50,16 +50,15 @@ $user = null;
         <script>
             $(document).ready(function () {
                 $("#accept").click(function (e) {
-e.preventDefault();
-e.stopImmediatePropagation();
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
                     var id = $(this).parent()[0].id;
-                    alert(id);
+                    //alert(id);
                     $.ajax({
                         type: "POST",
                         url: "acceptConnection.php",
                         data: {
-                            userID: id,
-                            Relationship: "Friend"
+                            userID: id
                         }
                     }).done(function () {
                         $(".connectionRequest").hide();

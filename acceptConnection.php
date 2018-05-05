@@ -9,10 +9,13 @@
 session_start();
 include_once "database.php";
 
-$relationString = mysqli_real_escape_string($conn, $_POST['Relationship']);
+//$relationString = mysqli_real_escape_string($conn, $_POST['Relationship']);
 $userID = mysqli_real_escape_string($conn, $_POST['userID']);
 
-
+$sql = "SELECT Relationship FROM connectionrequest WHERE User1 = $userID AND User2 = $_SESSION[id]";
+$result = mysqli_query($conn,$sql);
+$row = mysqli_fetch_assoc($result);
+$relationString = $row['Relationship'];
 
 //insert the new connection
 $sql = "INSERT INTO connection(User1, User2, Relationship) VALUES($_SESSION[id], $userID, '$relationString')";
@@ -27,3 +30,7 @@ $result = mysqli_query($conn, $sql);
 if($result != null){
     echo "success delete";
 }
+
+
+
+

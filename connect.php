@@ -28,3 +28,6 @@ if(empty($relationString)){
         echo "Connection sent";
     }
 }
+
+
+

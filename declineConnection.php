@@ -17,3 +17,6 @@ $result = mysqli_query($conn, $sql);
 if($result != null){
     echo "success delete";
 }
+
+
+
