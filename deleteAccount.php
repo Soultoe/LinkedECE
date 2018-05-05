@@ -82,7 +82,10 @@ while ($row = mysqli_fetch_assoc($result)) {
         $sql2 = "SELECT * FROM publication INNER JOIN media ON Media = IDMedia";
         $result2 = mysqli_query($conn, $sql2);
         if ($row2 = mysqli_fetch_assoc($result2)) {
-            unlink($row2['Path']);
+            $string = __DIR__."/".$row2['Path'];
+            $string = str_replace("/", "\\", $string);
+
+            unlink($string);
         }
         $sql = "DELETE FROM media WHERE $row[Media] = IDMedia";
         $result = mysqli_query($conn, $sql);
