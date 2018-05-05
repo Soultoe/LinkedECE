@@ -175,6 +175,8 @@ while ($res = mysqli_fetch_assoc($tmp)){
 ?>
     </div>
     </div>
+
+</div>
 <?php
 ?>
 
