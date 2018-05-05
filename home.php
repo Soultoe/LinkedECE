@@ -62,6 +62,11 @@ $admin = mysqli_fetch_assoc(mysqli_query($conn, "SELECT Admin FROM `user` WHERE 
 $tmp = mysqli_query($conn, $sql);
 while ($res = mysqli_fetch_assoc($tmp)){
     ?>
+	<div style="display: flex;
+			            flex-direction: column;">
+	<?php
+	if ($res['User'] == $_SESSION['id'] || in_array($res['User'], $arrayID)) {
+		?>
 <link href="bootstrap/css/home.css" rel="stylesheet">
     <div style="display: flex;
 			            flex-direction: column;
@@ -73,7 +78,7 @@ while ($res = mysqli_fetch_assoc($tmp)){
                         padding-left: 20px;">
 
 
-    <?php if ($res['User'] == $_SESSION['id'] || in_array($res['User'], $arrayID)) {
+    <?php 
 
     $sql = "SELECT NameUser, FirstNameUser, Admin FROM `user` WHERE IDUser = $res[User]";
     $res2 = mysqli_fetch_assoc(mysqli_query($conn, $sql));
@@ -87,7 +92,6 @@ while ($res = mysqli_fetch_assoc($tmp)){
         </form>
         <?php
     }
-
     echo "<div>";
     echo " <div style='font-size: large; font-weight: bolder; '> $res2[FirstNameUser] $res2[NameUser] published:  </div>";
     echo " <div style='font-size: small; font-style: italic; margin-left: 20px; '> <p>at $res[DatePublication]";
@@ -169,6 +173,7 @@ while ($res = mysqli_fetch_assoc($tmp)){
     echo "</div>"; //fin div publication
 }
 ?>
+    </div>
     </div>
 <?php
 ?>
