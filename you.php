@@ -47,6 +47,15 @@ if(!isset($_SESSION['id'])) {
                         <p id="NameUser"><?php echo $row['NameUser'] ?></p>
                         <p id="FirstNameUser"><?php echo $row['FirstNameUser'] ?></p>
                         <p id="MailUser"><?php echo $row['MailUser'] ?></p>
+						<?php 
+							$sql = "SELECT Path FROM media WHERE IDMedia = $row[CV]";
+							$myQuery = mysqli_query($conn, $sql);
+							if($myQuery!=false && $cv = mysqli_fetch_assoc($myQuery)) {
+						?>
+						<p id="CV"><a href="<?php echo $cv['Path'] ?>">Mon CV ici</a></p>
+						<?php
+						}
+						?>
                     </div>
 
                         <div class="otherInfo">
@@ -106,16 +115,6 @@ if(!isset($_SESSION['id'])) {
         <form action="modifyUserInfo.php">
             <input type="submit" value="Update profile" class="btn btn-success"/>
         </form>
-        <?php
-        //If the user is an admin and the current profile is not himself, add the delete button that send the delete request.
-        if($admin) {
-            ?>
-            <form action="<?php //create and execute the delete request here?>">
-                <input type="submit" value="Delete" class="btn btn-danger"/>
-            </form>
-            <?php
-        }
-        ?>
     </div>
 
 

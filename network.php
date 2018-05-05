@@ -180,6 +180,15 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
                             <p id="FirstNameUser"><?php echo $row['FirstNameUser'] ?></p>
                             <p id="Pseudo"><?php echo $row['Pseudo'] ?></p>
                             <p id="MailUser"><?php echo $row['MailUser'] ?></p>
+							<?php 
+								$sql = "SELECT Path FROM media WHERE IDMedia = $row[CV]";
+								$myQuery = mysqli_query($conn, $sql);
+								if($myQuery!=false && $cv = mysqli_fetch_assoc($myQuery)) {
+							?>
+							<p id="CV"><a href="<?php echo $cv['Path'] ?>">Mon CV ici</a></p>
+							<?php
+							}
+							?>
                         </div>
 
                         <div class="otherInfo">
