@@ -63,13 +63,16 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
         $sql = "SELECT * FROM `user` WHERE IDUser = '$_SESSION[idLoad]'";
         $result = mysqli_query($conn, $sql);
         if ($row = mysqli_fetch_assoc($result)) {
+            ?>
+            <link href="bootstrap/css/network.css" rel="stylesheet">
+            <link href="bootstrap/css/you.css" rel="stylesheet">
+            <div id="unconnected">
+            <?php
             $media2 = "SELECT Path FROM media WHERE IDMedia = $row[PP]";
             $mediaResult2 = mysqli_query($conn, $media2);
             if ($row3 = mysqli_fetch_assoc($mediaResult2)) {
                 ?>
-                <link href="bootstrap/css/network.css" rel="stylesheet">
-                <link href="bootstrap/css/you.css" rel="stylesheet">
-                <div id="unconnected">
+
                     <div class="nameAndPic">
                         <img class="friendPic" src="<?php echo $row3['Path'] ?>" alt="Profile Picture">
                         <p class="nameFriend"><?php echo $row['FirstNameUser'] ?><?php echo $row['NameUser'] ?></p>
@@ -77,10 +80,37 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
 
                     <button id="ConnectFriend">Connect as a Friend</button>
                     <button id="ConnectPro">Connect as a Pro</button>
-                </div>
                 <?php
             }
+            /**
+             * Handle the admin possibity to Upgrade a user, Downgrade an Admin and Delete a User
+             */
+            $sql ="SELECT * FROM user WHERE IDUser = $_SESSION[id]";
+            $result = mysqli_query($conn, $sql);
+            if($row = mysqli_fetch_assoc($result)){
+                if($row['Admin'][0] == 1){
+                    ?>
+                    <p><em>Admin powers : </em></p><br>
+                    <form action="upgradeAdmin.php" method="post" class="upgradeAdmin">
+                        <button type="submit" name="submit" class="btn btn-info btn-sm upgradeAdmin">Upgrade User to Admin</button>
+                    </form>
+
+                    <form action="downgradeAdmin.php" method="post" class="downgradeAdmin">
+                        <button type="submit" name="submit" class="btn btn-warning btn-sm downgradeAdmin">Downgrade Admin to User</button>
+                    </form>
+
+                    <form action="deleteAccount.php" method="post" class="deleteAccount">
+                        <button type="submit" name="submit" class="btn btn-danger btn-sm deleteAccount">Delete this account</button>
+                    </form>
+                    <?php
+                }
+            }
+
+            ?>
+            </div>
+            <?php
         }
+
     }
     //else is a connection
     //print the relationship and the user's info
