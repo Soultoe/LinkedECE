@@ -36,8 +36,13 @@
 
 <div class="page">
 
-    <div class="profileSummary">
-        <h2>My Information.</h2>
+    <div>
+        <img style="display: flex;
+    margin-top: 60px;
+    margin-bottom: auto;
+    border-radius: 15px;
+
+    margin-left: 100px;" src="media/icons/logoECE.png" height="225" width="225">
     </div>
 
     <div class="content">

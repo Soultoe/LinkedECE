@@ -39,7 +39,7 @@ $user = null;
         while ($row = mysqli_fetch_assoc($result)) {
             ?>
             <div id="message">
-                <p><em><?php echo $row['NameUser'] ?></em> published a new post at <?php echo $row['DatePublication'] ?>
+                <p style="font-size: medium; font-weight: bold; font-style: normal; color: #007179;"> <i class="glyphicon glyphicon-heart" style="margin-right: 10px;"></i>    <?php echo $row['NameUser'] ?> published a new post at <?php echo $row['DatePublication'] ?>
                 </p>
             </div>
             <?php
