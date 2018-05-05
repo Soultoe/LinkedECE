@@ -115,16 +115,6 @@ if(!isset($_SESSION['id'])) {
         <form action="modifyUserInfo.php">
             <input type="submit" value="Update profile" class="btn btn-success"/>
         </form>
-        <?php
-        //If the user is an admin and the current profile is not himself, add the delete button that send the delete request.
-        if($admin) {
-            ?>
-            <form action="<?php //create and execute the delete request here?>">
-                <input type="submit" value="Delete" class="btn btn-danger"/>
-            </form>
-            <?php
-        }
-        ?>
     </div>
 
 
