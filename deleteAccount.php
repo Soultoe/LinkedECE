@@ -158,3 +158,6 @@ $result = mysqli_query($conn, $sql);
 if ($result) {
     echo "delete successful";
 }
+
+header("Location: network.php");
+exit();

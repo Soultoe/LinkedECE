@@ -78,8 +78,8 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
                         <p class="nameFriend"><?php echo $row['FirstNameUser'] ?><?php echo $row['NameUser'] ?></p>
                     </div>
 
-                    <button id="ConnectFriend">Connect as a Friend</button>
-                    <button id="ConnectPro">Connect as a Pro</button>
+                    <button id="ConnectFriend" class="btn btn-success">Connect as a Friend</button>
+                    <button id="ConnectPro" class="btn btn-primary">Connect as a Pro</button>
                     <?php
                 }
                 /**
@@ -90,21 +90,20 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
                 if ($row = mysqli_fetch_assoc($result)) {
                     if ($row['Admin'][0] == 1) {
                         ?>
-                        <p><em>Admin powers : </em></p><br>
                         <form action="upgradeAdmin.php" method="post" class="upgradeAdmin">
-                            <button type="submit" name="submit" class="btn btn-info btn-sm upgradeAdmin">Upgrade User to
+                            <button type="submit" name="submit" class="btn btn-info upgradeAdmin">Upgrade User to
                                 Admin
                             </button>
                         </form>
 
                         <form action="downgradeAdmin.php" method="post" class="downgradeAdmin">
-                            <button type="submit" name="submit" class="btn btn-warning btn-sm downgradeAdmin">Downgrade
+                            <button type="submit" name="submit" class="btn btn-warning downgradeAdmin">Downgrade
                                 Admin to User
                             </button>
                         </form>
 
                         <form action="deleteAccount.php" method="post" class="deleteAccount">
-                            <button type="submit" name="submit" class="btn btn-danger btn-sm deleteAccount">Delete this
+                            <button type="submit" name="submit" class="btn btn-danger deleteAccount">Delete this
                                 account
                             </button>
                         </form>

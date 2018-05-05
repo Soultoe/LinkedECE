@@ -14,3 +14,6 @@ $result = mysqli_query($conn, $sql);
 if ($result) {
     echo "update downgrade successful";
 }
+
+header("Location: network.php");
+exit();
