@@ -96,11 +96,11 @@ while ($res = mysqli_fetch_assoc($tmp)){
     echo " <div style='font-size: large; font-weight: bolder; '> $res2[FirstNameUser] $res2[NameUser] published:  </div>";
     echo " <div style='font-size: small; font-style: italic; margin-left: 20px; '> <p>at $res[DatePublication]";
 
-    if ($res['DateUser'] != NULL) {
-        echo " <div style='font-size: smaller; font-style: italic; margin-left: 10px; '> <p>$res[DateUser], ";
+    if ($res['DateUser'] != NULL)
+        echo " <div style='font-size: smaller; font-style: italic; margin-left: 10px; '> <p>$res[DateUser]</p></div>, ";
         if ($res['PlaceUser'] != NULL)
-            echo " $res[PlaceUser] </br>";
-    }
+            echo " $res[PlaceUser]";
+
 
     if ($res['Description'] != NULL)
         echo "<i style='color: black; font-size: medium'> </br> $res[Description]</i> </p> </div>";
@@ -171,10 +171,12 @@ while ($res = mysqli_fetch_assoc($tmp)){
     }
 }
     echo "</div>"; //fin div publication
+    echo "</div>";
 }
 ?>
     </div>
     </div>
+
 
 </div>
 <?php
