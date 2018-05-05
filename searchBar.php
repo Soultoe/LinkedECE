@@ -15,25 +15,25 @@ $arrayID = null;
 $idLoad = null;
 
 ?>
-<div id="jquery">
-    <script>
-        $(document).ready(function () {
-            $(".member").click(function () {
-                var id = this.id;
-                //alert(id);
+    <div id="jquery">
+        <script>
+            $(document).ready(function () {
+                $(".member").click(function () {
+                    var id = this.id;
+                    //alert(id);
 
-                $.ajax({
-                    url: "network.php",
-                    type: "post",
-                    data: {idLoad: id}
-                }).done(function () {
+                    $.ajax({
+                        url: "network.php",
+                        type: "post",
+                        data: {idLoad: id}
+                    }).done(function () {
 
-                    window.location.href ="network.php";
+                        window.location.href = "network.php";
+                    });
                 });
             });
-        });
-    </script>
-</div>
+        </script>
+    </div>
 <?php
 
 $string = mysqli_real_escape_string($conn, $_POST["searchBarField"]);
@@ -46,14 +46,16 @@ if (empty($string)) {
     $sql = "SELECT IDUser FROM `user` WHERE NameUser LIKE '$string' OR FirstNameUser LIKE '$string' OR MailUser LIKE '$string' OR Pseudo LIKE '$string'";
     $result = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
-        $arrayID[] = $row['IDUser'];
+        if (!($row['IDUser'] == $_SESSION['id'])) {
+            $arrayID[] = $row['IDUser'];
+        }
     }
 
     ?>
     <link href="bootstrap/css/network.css" rel="stylesheet">
     <div class="members">
         <?php
-        if($arrayID != null){
+        if ($arrayID != null) {
             foreach ($arrayID as $id) {
                 $sql = "SELECT NameUser, FirstNameUser, PP FROM `user` WHERE IDUser = $id";
                 $result = mysqli_query($conn, $sql);
@@ -63,12 +65,12 @@ if (empty($string)) {
                     $result2 = mysqli_query($conn, $sql2);
                     if ($row2 = mysqli_fetch_assoc($result2)) {
                         $idLoad = $id;
-                    ?>
+                        ?>
                         <div class="member" id="<?php echo $id; ?>">
-                        <img src="<?php echo $row2['Path'] ?>" class="friendPic">
-                        <p class="nameFriend"><?php echo $row['NameUser'] ?> <?php echo $row['FirstNameUser'] ?></p>
-                    </div>
-                    <?php
+                            <img src="<?php echo $row2['Path'] ?>" class="friendPic">
+                            <p class="nameFriend"><?php echo $row['NameUser'] ?><?php echo $row['FirstNameUser'] ?></p>
+                        </div>
+                        <?php
                     }
                 }
             }
