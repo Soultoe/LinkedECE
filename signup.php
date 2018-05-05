@@ -7,7 +7,7 @@
 
 	include_once 'database.php';
 
-	$firstName = mysqli_real_escape_string($conn, $_POST['firstName']);
+$firstName = mysqli_real_escape_string($conn, $_POST['firstName']);
 	$lastName = mysqli_real_escape_string($conn, $_POST['lastName']);
 	$email = mysqli_real_escape_string($conn, $_POST['email']);
 	$pwd = mysqli_real_escape_string($conn, $_POST['pwd']);

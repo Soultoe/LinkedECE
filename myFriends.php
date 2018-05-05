@@ -24,10 +24,14 @@ if (!isset($_SESSION['id'])) {
             $arrayID[] = $row['User2'];
         }
 
-        $sql2 = "SELECT DISTINCT User1 FROM `user` INNER JOIN connection ON `user`.IDUser = connection.User1 WHERE User2 = $_SESSION[id]";
+        $sql2 = "SELECT DISTINCT User1 FROM `user` INNER JOIN connection ON `user`.IDUser = connection.User2 WHERE User2 = $_SESSION[id]";
         $result2 = mysqli_query($conn, $sql2);
         while ($row2 = mysqli_fetch_assoc($result2)) {
-            if (!in_array($row2['User1'], $arrayID)) {
+            if ($arrayID != null) {
+                if (!in_array($row2['User1'], $arrayID)) {
+                    $arrayID[] = $row2['User1'];
+                }
+            } else {
                 $arrayID[] = $row2['User1'];
             }
         }
@@ -38,7 +42,7 @@ if (!isset($_SESSION['id'])) {
             <?php
         } else {
             foreach ($arrayID as $id) {
-                $sql = "SELECT DISTINCT  NameUser, FirstNameUser, PP FROM `user` INNER JOIN connection ON `user`.IDUser = connection.User2  WHERE IDuser = '$id'";
+                $sql = "SELECT DISTINCT  NameUser, FirstNameUser, PP FROM `user` INNER JOIN connection ON `user`.IDUser = connection.User2  WHERE IDuser = '$id' UNION SELECT DISTINCT  NameUser, FirstNameUser, PP FROM `user` INNER JOIN connection ON `user`.IDUser = connection.User1  WHERE IDuser = '$id'";
                 $result = mysqli_query($conn, $sql);
                 if ($row = mysqli_fetch_assoc($result)) {
                     $sql2 = "SELECT Path FROM user INNER JOIN media ON media.IDMedia = PP WHERE IDUser = '$id'";
@@ -51,7 +55,9 @@ if (!isset($_SESSION['id'])) {
                             <p class="nameFriend"><?php echo $row['FirstNameUser'] ?><?php echo $row['NameUser'] ?></p>
 
                             <form action="deleteFriend.php" method="post" class="deleteFriendButton">
-                                <button type="submit" name="submit" class="btn btn-danger btn-xs deleteFriendButton">Delete</button>
+                                <button type="submit" name="submit" class="btn btn-danger btn-xs deleteFriendButton">
+                                    Delete
+                                </button>
                             </form>
                         </div>
                         <?php

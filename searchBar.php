@@ -67,10 +67,10 @@ if (empty($string)) {
                         $idLoad = $id;
                         ?>
                         <div class="member" id="<?php echo $id; ?>">
-                        <img src="<?php echo $row2['Path'] ?>" class="friendPic">
-                        <p class="nameFriend"><?php echo $row['Pseudo']?></p>
-                    </div>
-                    <?php
+                            <img src="<?php echo $row2['Path'] ?>" class="friendPic">
+                            <p class="nameFriend"><?php echo $row['Pseudo'] ?></p>
+                        </div>
+                        <?php
                     }
                 }
             }

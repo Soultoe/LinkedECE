@@ -6,8 +6,8 @@
  * Time: 09:40
  */
 
-include_once  "borders.php";
-if(!isset($_SESSION['id'])){
+include_once "borders.php";
+if (!isset($_SESSION['id'])) {
     header("Location: index.php");
     exit();
 }
@@ -22,8 +22,8 @@ if(!isset($_SESSION['id'])){
 
 $sql = "SELECT Admin FROM user WHERE IDUser = '$_SESSION[id]'";
 $result = mysqli_query($conn, $sql);
-if($row = mysqli_fetch_assoc($result)) {
-    if($row['Admin'] == true){ //Is an admin
+if ($row = mysqli_fetch_assoc($result)) {
+    if ($row['Admin'] == true) { //Is an admin
 
         ?>
         <link href="bootstrap/css/jobs.css" rel="stylesheet">
@@ -31,10 +31,10 @@ if($row = mysqli_fetch_assoc($result)) {
             <?php
             $sql = "SELECT * FROM company";
             $result = mysqli_query($conn, $sql);
-            while($row = mysqli_fetch_assoc($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
                 $media = "SELECT Path FROM media WHERE IDMedia = $row[PP]";
-                $mediaResult = mysqli_query($conn,$media);
-                while($row2 = mysqli_fetch_assoc($mediaResult)) {
+                $mediaResult = mysqli_query($conn, $media);
+                while ($row2 = mysqli_fetch_assoc($mediaResult)) {
                     ?>
                     <div id="company">
                         <img class="companyLogo" src="<?php echo $row2['Path'] ?>">
@@ -58,16 +58,16 @@ if($row = mysqli_fetch_assoc($result)) {
             <?php
             $sql = "SELECT * FROM job INNER JOIN user ON IDUser = job.User INNER JOIN company ON company.IDCompany = job.Company ";
             $result = mysqli_query($conn, $sql);
-            while($row = mysqli_fetch_assoc($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {
                 ?>
                 <div id="job">
-                    <p id="companyName" class="strong"><?php echo $row['NameCompany']?> is searching for a:</p>
-                    <p class="jobDescription"><?php echo $row['Position']?></p>
-                    <p class="jobDescription2"><?php echo $row['Description']?></p>
-                    <p class="jobDescription2">From: <?php echo $row['DateBegin']?></p>
-                    <p class="jobDescription2">To: <?php echo $row['DateEnd']?></p>
-                    <p class="jobDescription">Offered by: <?php echo $row['NameUser']?></p>
-                    <p class="jobDescription"><?php echo $row['MailCompany']?></p>
+                    <p id="companyName" class="strong"><?php echo $row['NameCompany'] ?> is searching for a:</p>
+                    <p class="jobDescription"><?php echo $row['Position'] ?></p>
+                    <p class="jobDescription2"><?php echo $row['Description'] ?></p>
+                    <p class="jobDescription2">From: <?php echo $row['DateBegin'] ?></p>
+                    <p class="jobDescription2">To: <?php echo $row['DateEnd'] ?></p>
+                    <p class="jobDescription">Offered by: <?php echo $row['NameUser'] ?></p>
+                    <p class="jobDescription"><?php echo $row['MailCompany'] ?></p>
                 </div>
                 <?php
             }
@@ -80,8 +80,7 @@ if($row = mysqli_fetch_assoc($result)) {
         </div>
         <?php
 
-    }
-    else { //Is a normal user
+    } else { //Is a normal user
 
         /*
          * has a company or nor
@@ -91,8 +90,8 @@ if($row = mysqli_fetch_assoc($result)) {
          */
         $sql = "SELECT Company FROM user";
         $result = mysqli_query($conn, $sql);
-        if($row = mysqli_fetch_assoc($result)) {
-            if($row['Company'] != null){ //has a company
+        if ($row = mysqli_fetch_assoc($result)) {
+            if ($row['Company'] != null) { //has a company
                 ?>
                 <link href="bootstrap/css/jobs.css" rel="stylesheet">
                 <div id="jobs">
@@ -101,49 +100,49 @@ if($row = mysqli_fetch_assoc($result)) {
 
                     $sql = "SELECT Company FROM user WHERE IDUser = $_SESSION[id]";
                     $result = mysqli_query($conn, $sql);
-                    if($row = mysqli_fetch_assoc($result)) $comp = $row['company'];
+                    if ($row = mysqli_fetch_assoc($result)) $comp = $row['company'];
 
                     $sql = "SELECT * FROM job INNER JOIN user ON IDUser = job.User INNER JOIN company ON company.IDCompany = job.Company WHERE job.Company = $comp";
                     $result = mysqli_query($conn, $sql);
-                    while($row = mysqli_fetch_assoc($result)) {
+                    while ($row = mysqli_fetch_assoc($result)) {
                         ?>
                         <div id="job">
-                            <p id="companyName" class="strong"><em><?php echo $row['NameCompany']?></em></p>
-                            <p class="jobDescription"><?php echo $row['Position']?></p>
-                            <p class="jobDescription2"><?php echo $row['Description']?></p>
-                            <p class="jobDescription2"><?php echo $row['DateBegin']?></p>
-                            <p class="jobDescription2"><?php echo $row['DateEnd']?></p>
-                            <p class="jobDescription"><?php echo $row['NameUser']?></p>
-                            <p class="jobDescription"><?php echo $row['MailCompany']?></p>
+                            <p id="companyName" class="strong"><em><?php echo $row['NameCompany'] ?></em></p>
+                            <p class="jobDescription"><?php echo $row['Position'] ?></p>
+                            <p class="jobDescription2"><?php echo $row['Description'] ?></p>
+                            <p class="jobDescription2"><?php echo $row['DateBegin'] ?></p>
+                            <p class="jobDescription2"><?php echo $row['DateEnd'] ?></p>
+                            <p class="jobDescription"><?php echo $row['NameUser'] ?></p>
+                            <p class="jobDescription"><?php echo $row['MailCompany'] ?></p>
                         </div>
                         <?php
                     }
                     ?>
                     <div id="addJob">
                         <form action="addJob.php" method="post">
-                            <input type="submit" name="addJob" class="btn btn-success" value="add Job" id="addJobButton"/>
+                            <input type="submit" name="addJob" class="btn btn-success" value="add Job"
+                                   id="addJobButton"/>
                         </form>
                     </div>
                 </div>
                 <?php
-            }
-            else{ //doesn't have a company
+            } else { //doesn't have a company
                 ?>
                 <link href="bootstrap/css/jobs.css" rel="stylesheet">
                 <div id="jobs">
                     <?php
                     $sql = "SELECT * FROM job INNER JOIN user ON IDUser = job.User INNER JOIN company ON company.IDCompany = job.Company ";
                     $result = mysqli_query($conn, $sql);
-                    while($row = mysqli_fetch_assoc($result)) {
+                    while ($row = mysqli_fetch_assoc($result)) {
                         ?>
                         <div id="job" class="test">
-                            <p id="companyName" class="strong"><em><?php echo $row['NameCompany']?></em></p>
-                            <p class="jobDescription"><?php echo $row['Position']?></p>
-                            <p class="jobDescription2"><?php echo $row['Description']?></p>
-                            <p class="jobDescription2"><?php echo $row['DateBegin']?></p>
-                            <p class="jobDescription2"><?php echo $row['DateEnd']?></p>
-                            <p class="jobDescription"><?php echo $row['NameUser']?></p>
-                            <p class="jobDescription"><?php echo $row['MailCompany']?></p>
+                            <p id="companyName" class="strong"><em><?php echo $row['NameCompany'] ?></em></p>
+                            <p class="jobDescription"><?php echo $row['Position'] ?></p>
+                            <p class="jobDescription2"><?php echo $row['Description'] ?></p>
+                            <p class="jobDescription2"><?php echo $row['DateBegin'] ?></p>
+                            <p class="jobDescription2"><?php echo $row['DateEnd'] ?></p>
+                            <p class="jobDescription"><?php echo $row['NameUser'] ?></p>
+                            <p class="jobDescription"><?php echo $row['MailCompany'] ?></p>
                         </div>
                         <?php
                     }
@@ -158,18 +157,18 @@ if($row = mysqli_fetch_assoc($result)) {
 
 ?>
 
-<div id="jquery">
-    <script>
-        $(document).ready(function(){
-            $("#addCompany").click(function(){
-                $.load("addCompany.php");
+    <div id="jquery">
+        <script>
+            $(document).ready(function () {
+                $("#addCompany").click(function () {
+                    $.load("addCompany.php");
+                });
+                $("#addJob").click(function () {
+                    $.load("addJob.php");
+                });
             });
-            $("#addJob").click(function(){
-                $.load("addJob.php");
-            });
-        });
-    </script>
-</div>
+        </script>
+    </div>
 
 <?php
 include_once "footer.php";

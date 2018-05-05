@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- check for mobile phones resizing done at scale 1-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- check for mobile phones resizing done at scale 1-->
 
     <meta name="description" content="">
     <meta name="Romain" content="">
@@ -23,9 +24,10 @@
 
         <div class="login nav navbar-nav">
             <form action="login.php" method="POST">
-                    <input type="text" name="id" placeholder="Username">
-                    <input type="password" name="pwd" placeholder="Password">
-                    <button type="submit" name="submit" style="background: none; border: none;"><i class="glyphicon glyphicon-log-in"></i> </button>
+                <input type="text" name="id" placeholder="Username">
+                <input type="password" name="pwd" placeholder="Password">
+                <button type="submit" name="submit" style="background: none; border: none;"><i
+                            class="glyphicon glyphicon-log-in"></i></button>
             </form>
         </div>
 

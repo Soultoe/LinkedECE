@@ -82,7 +82,8 @@ while ($res = mysqli_fetch_assoc($tmp)){
         ?>
         <form action="deletePost.php" method="POST" style="margin-top: 20px;">
             <input type="hidden" name="DEL" value="<?php echo $res['IDPublication'] ?>">
-            <button type="submit" name="submit" class="glyphicon glyphicon-remove" style="float: right; margin-right: 20px; border:none; background-color: #bfecef; height: 30px; width: 30px;"></button>
+            <button type="submit" name="submit" class="glyphicon glyphicon-remove"
+                    style="float: right; margin-right: 20px; border:none; background-color: #bfecef; height: 30px; width: 30px;"></button>
         </form>
         <?php
     }
@@ -125,20 +126,23 @@ while ($res = mysqli_fetch_assoc($tmp)){
     ?>
     <form action="toggleReact.php" method="POST">
         <input type="hidden" name="post" value="<?php echo $res['IDPublication'] ?>">
-        <input type="submit" name="submit" style='margin-left: 20px; margin-bottom: 20px;' class='btn btn-success' value="<?php
-        $sql = "SELECT COUNT(DISTINCT User) AS 'Num' FROM reaction WHERE Publication=$res[IDPublication]";
-        $react = mysqli_fetch_assoc(mysqli_query($conn, $sql))['Num'];
-        $sql = "SELECT COUNT(DISTINCT User) AS 'Num' FROM reaction WHERE Publication=$res[IDPublication] AND reaction.User=$_SESSION[id]";
-        $already = mysqli_fetch_assoc(mysqli_query($conn, $sql))['Num'];
-        echo ($already == 0 ? "LIKE" : "LIKED") . " $react";
-        ?>">
+        <input type="submit" name="submit" style='margin-left: 20px; margin-bottom: 20px;' class='btn btn-success'
+               value="<?php
+               $sql = "SELECT COUNT(DISTINCT User) AS 'Num' FROM reaction WHERE Publication=$res[IDPublication]";
+               $react = mysqli_fetch_assoc(mysqli_query($conn, $sql))['Num'];
+               $sql = "SELECT COUNT(DISTINCT User) AS 'Num' FROM reaction WHERE Publication=$res[IDPublication] AND reaction.User=$_SESSION[id]";
+               $already = mysqli_fetch_assoc(mysqli_query($conn, $sql))['Num'];
+               echo ($already == 0 ? "LIKE" : "LIKED") . " $react";
+               ?>">
     </form>
     <form action="newComment.php" method="POST">
         <input type="hidden" name="User" value="<?php echo $_SESSION['id'] ?>">
         <input type="hidden" name="post" value="<?php echo $res['IDPublication'] ?>">
-        <textarea style='margin-left: 20px; border-radius: 10px;' name="comment" , placeholder="Ecrivez votre commentaire ici"></textarea>
+        <textarea style='margin-left: 20px; border-radius: 10px;' name="comment"
+                  placeholder="Ecrivez votre commentaire ici"></textarea>
         <div>
-        <input type="submit" name="submit" value="commenter" class="btn btn-primary" style="margin-left: 20px; margin-bottom: 20px;">
+            <input type="submit" name="submit" value="commenter" class="btn btn-primary"
+                   style="margin-left: 20px; margin-bottom: 20px;">
         </div>
     </form>
     <?php
@@ -150,10 +154,11 @@ while ($res = mysqli_fetch_assoc($tmp)){
             <p><?php echo $row['Pseudo'] ?> has left a comment : <?php echo $row['Content'] ?></p>
             <?php
             if ($row['User'] == $_SESSION['id'] || $admin[0] == 1) { ?>
-                <form action="deleteComment" method="POST">
+                <form action="deleteComment.php" method="POST">
                     <div style="display: flex;">
-                    <input type="hidden" name="DEL" value=<?php echo $row['IDComment'] ?>>
-                        <button type="submit" name="submit" value="Delete Comment" class="glyphicon glyphicon-remove" style="border:none; background-color: #bfecef; height: 30px; width: 30px; margin-bottom: 20px;"></button>
+                        <input type="hidden" name="DEL" value=<?php echo $row['IDComment'] ?>>
+                        <button type="submit" name="submit" value="Delete Comment" class="glyphicon glyphicon-remove"
+                                style="border:none; background-color: #bfecef; height: 30px; width: 30px; margin-bottom: 20px;"></button>
                     </div>
                 </form>
             <?php } ?>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['id'])) {
+if (!isset($_SESSION['id'])) {
     header("Location: index.php");
     exit();
 }
@@ -17,10 +17,9 @@ $company = "SELECT * FROM company WHERE NameCompany LIKE '$name';";
 $result = mysqli_query($conn, $company);
 
 
-if($row = mysqli_fetch_assoc($result))
-{
+if ($row = mysqli_fetch_assoc($result)) {
     $sql = "INSERT INTO experience(`User`,Company,`Position`)VALUES($id,$row[IDCompany],'$description');";
-    $test = mysqli_query($conn,$sql);
+    $test = mysqli_query($conn, $sql);
 }
 
 header("Location: modifyUserInfo.php");

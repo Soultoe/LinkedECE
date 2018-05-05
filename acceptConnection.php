@@ -13,21 +13,21 @@ include_once "database.php";
 $userID = mysqli_real_escape_string($conn, $_POST['userID']);
 
 $sql = "SELECT Relationship FROM connectionrequest WHERE User1 = $userID AND User2 = $_SESSION[id]";
-$result = mysqli_query($conn,$sql);
+$result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $relationString = $row['Relationship'];
 
 //insert the new connection
 $sql = "INSERT INTO connection(User1, User2, Relationship) VALUES($_SESSION[id], $userID, '$relationString')";
 $result = mysqli_query($conn, $sql);
-if($result != null){
+if ($result != null) {
     echo "success insert";
 }
 
 //delete the request
 $sql = "DELETE FROM connectionrequest WHERE User1 = $userID AND User2 = $_SESSION[id]";
 $result = mysqli_query($conn, $sql);
-if($result != null){
+if ($result != null) {
     echo "success delete";
 }
 

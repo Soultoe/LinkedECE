@@ -11,6 +11,6 @@ include_once "database.php";
 
 $sql = "UPDATE `user` SET Admin = 1 WHERE IDUser = $_SESSION[idLoad]";
 $result = mysqli_query($conn, $sql);
-if($result){
+if ($result) {
     echo "update upgrade successful";
 }

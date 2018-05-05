@@ -12,12 +12,12 @@ include_once "database.php";
 $relationString = mysqli_real_escape_string($conn, $_POST['Relationship']);
 
 ?>
-<div>
-    <?php ($_SESSION); ?>
-</div>
+    <div>
+        <?php ($_SESSION); ?>
+    </div>
 <?php
 
-if(empty($relationString)){
+if (empty($relationString)) {
     header("Location: network.php?error=pb");
     exit();
 

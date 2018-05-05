@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['id'])) {
+if (!isset($_SESSION['id'])) {
     header("Location: index.php");
     exit();
 }
@@ -15,10 +15,9 @@ $company = "SELECT * FROM company WHERE NameCompany LIKE '$name';";
 $result = mysqli_query($conn, $company);
 
 
-if($row = mysqli_fetch_assoc($result))
-{
+if ($row = mysqli_fetch_assoc($result)) {
     $sql = "DELETE FROM experience WHERE Company = $row[IDCompany] AND Position = '$position';";
-    $test = mysqli_query($conn,$sql);
+    $test = mysqli_query($conn, $sql);
 }
 
 header("Location: modifyUserInfo.php");

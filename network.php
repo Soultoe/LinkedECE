@@ -30,7 +30,7 @@ function connect($relationString)
 }
 */
 /*
-if(($_SESSION['idLoad']) != null){
+if(isset($_SESSION['idLoad'])){
     unset($_SESSION['idLoad']);
 }
 */
@@ -67,11 +67,11 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
             <link href="bootstrap/css/network.css" rel="stylesheet">
             <link href="bootstrap/css/you.css" rel="stylesheet">
             <div id="unconnected">
-            <?php
-            $media2 = "SELECT Path FROM media WHERE IDMedia = $row[PP]";
-            $mediaResult2 = mysqli_query($conn, $media2);
-            if ($row3 = mysqli_fetch_assoc($mediaResult2)) {
-                ?>
+                <?php
+                $media2 = "SELECT Path FROM media WHERE IDMedia = $row[PP]";
+                $mediaResult2 = mysqli_query($conn, $media2);
+                if ($row3 = mysqli_fetch_assoc($mediaResult2)) {
+                    ?>
 
                     <div class="nameAndPic">
                         <img class="friendPic" src="<?php echo $row3['Path'] ?>" alt="Profile Picture">
@@ -80,33 +80,39 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
 
                     <button id="ConnectFriend">Connect as a Friend</button>
                     <button id="ConnectPro">Connect as a Pro</button>
-                <?php
-            }
-            /**
-             * Handle the admin possibity to Upgrade a user, Downgrade an Admin and Delete a User
-             */
-            $sql ="SELECT * FROM user WHERE IDUser = $_SESSION[id]";
-            $result = mysqli_query($conn, $sql);
-            if($row = mysqli_fetch_assoc($result)){
-                if($row['Admin'][0] == 1){
-                    ?>
-                    <p><em>Admin powers : </em></p><br>
-                    <form action="upgradeAdmin.php" method="post" class="upgradeAdmin">
-                        <button type="submit" name="submit" class="btn btn-info btn-sm upgradeAdmin">Upgrade User to Admin</button>
-                    </form>
-
-                    <form action="downgradeAdmin.php" method="post" class="downgradeAdmin">
-                        <button type="submit" name="submit" class="btn btn-warning btn-sm downgradeAdmin">Downgrade Admin to User</button>
-                    </form>
-
-                    <form action="deleteAccount.php" method="post" class="deleteAccount">
-                        <button type="submit" name="submit" class="btn btn-danger btn-sm deleteAccount">Delete this account</button>
-                    </form>
                     <?php
                 }
-            }
+                /**
+                 * Handle the admin possibity to Upgrade a user, Downgrade an Admin and Delete a User
+                 */
+                $sql = "SELECT * FROM user WHERE IDUser = $_SESSION[id]";
+                $result = mysqli_query($conn, $sql);
+                if ($row = mysqli_fetch_assoc($result)) {
+                    if ($row['Admin'][0] == 1) {
+                        ?>
+                        <p><em>Admin powers : </em></p><br>
+                        <form action="upgradeAdmin.php" method="post" class="upgradeAdmin">
+                            <button type="submit" name="submit" class="btn btn-info btn-sm upgradeAdmin">Upgrade User to
+                                Admin
+                            </button>
+                        </form>
 
-            ?>
+                        <form action="downgradeAdmin.php" method="post" class="downgradeAdmin">
+                            <button type="submit" name="submit" class="btn btn-warning btn-sm downgradeAdmin">Downgrade
+                                Admin to User
+                            </button>
+                        </form>
+
+                        <form action="deleteAccount.php" method="post" class="deleteAccount">
+                            <button type="submit" name="submit" class="btn btn-danger btn-sm deleteAccount">Delete this
+                                account
+                            </button>
+                        </form>
+                        <?php
+                    }
+                }
+
+                ?>
             </div>
             <?php
         }
@@ -180,15 +186,15 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
                             <p id="FirstNameUser"><?php echo $row['FirstNameUser'] ?></p>
                             <p id="Pseudo"><?php echo $row['Pseudo'] ?></p>
                             <p id="MailUser"><?php echo $row['MailUser'] ?></p>
-							<?php 
-								$sql = "SELECT Path FROM media WHERE IDMedia = $row[CV]";
-								$myQuery = mysqli_query($conn, $sql);
-								if($myQuery!=false && $cv = mysqli_fetch_assoc($myQuery)) {
-							?>
-							<p id="CV"><a href="<?php echo $cv['Path'] ?>">Mon CV ici</a></p>
-							<?php
-							}
-							?>
+                            <?php
+                            $sql = "SELECT Path FROM media WHERE IDMedia = $row[CV]";
+                            $myQuery = mysqli_query($conn, $sql);
+                            if ($myQuery != false && $cv = mysqli_fetch_assoc($myQuery)) {
+                                ?>
+                                <p id="CV"><a href="<?php echo $cv['Path'] ?>">Mon CV ici</a></p>
+                                <?php
+                            }
+                            ?>
                         </div>
 
                         <div class="otherInfo">
@@ -255,24 +261,30 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
             /**
              * Handle the admin possibity to Upgrade a user, Downgrade an Admin and Delete a User
              */
-            $sql ="SELECT * FROM user WHERE IDUser = $_SESSION[id]";
+            $sql = "SELECT * FROM user WHERE IDUser = $_SESSION[id]";
             $result = mysqli_query($conn, $sql);
-            if($row = mysqli_fetch_assoc($result)){
-                if($row['Admin'][0] == 1){
-                ?>
+            if ($row = mysqli_fetch_assoc($result)) {
+                if ($row['Admin'][0] == 1) {
+                    ?>
                     <p><em>Admin powers : </em></p><br>
                     <form action="upgradeAdmin.php" method="post" class="upgradeAdmin">
-                        <button type="submit" name="submit" class="btn btn-info btn-sm upgradeAdmin">Upgrade User to Admin</button>
+                        <button type="submit" name="submit" class="btn btn-info btn-sm upgradeAdmin">Upgrade User to
+                            Admin
+                        </button>
                     </form>
 
                     <form action="downgradeAdmin.php" method="post" class="downgradeAdmin">
-                        <button type="submit" name="submit" class="btn btn-warning btn-sm downgradeAdmin">Downgrade Admin to User</button>
+                        <button type="submit" name="submit" class="btn btn-warning btn-sm downgradeAdmin">Downgrade
+                            Admin to User
+                        </button>
                     </form>
 
                     <form action="deleteAccount.php" method="post" class="deleteAccount">
-                        <button type="submit" name="submit" class="btn btn-danger btn-sm deleteAccount">Delete this account</button>
+                        <button type="submit" name="submit" class="btn btn-danger btn-sm deleteAccount">Delete this
+                            account
+                        </button>
                     </form>
-                <?php
+                    <?php
                 }
             }
 
@@ -288,19 +300,25 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
         <?php
         $arrayID = null;
 
-        $sql = "SELECT DISTINCT User2 FROM `user` INNER JOIN connection ON `user`.IDUser = connection.User2 WHERE User1 = $_SESSION[id]";
+        $sql = "SELECT DISTINCT User2 FROM `user` INNER JOIN connection ON `user`.IDUser = connection.User1 WHERE User1 = $_SESSION[id]";
         $result = mysqli_query($conn, $sql);
         while ($row = mysqli_fetch_assoc($result)) {
             $arrayID[] = $row['User2'];
         }
 
-        $sql2 = "SELECT DISTINCT User1 FROM `user` INNER JOIN connection ON `user`.IDUser = connection.User1 WHERE User2 = $_SESSION[id]";
+        $sql2 = "SELECT DISTINCT User1 FROM `user` INNER JOIN connection ON `user`.IDUser = connection.User2 WHERE User2 = $_SESSION[id]";
         $result2 = mysqli_query($conn, $sql2);
         while ($row2 = mysqli_fetch_assoc($result2)) {
-            if (!in_array($row2['User1'], $arrayID)) {
+            if ($arrayID != null) {
+                if (!in_array($row2['User1'], $arrayID)) {
+                    $arrayID[] = $row2['User1'];
+                }
+            } else {
                 $arrayID[] = $row2['User1'];
             }
         }
+
+        //var_dump($arrayID);
 
         if ($arrayID == null) {
             ?>
@@ -308,7 +326,7 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
             <?php
         } else {
             foreach ($arrayID as $id) {
-                $sql = "SELECT DISTINCT  NameUser, FirstNameUser, PP FROM `user` INNER JOIN connection ON `user`.IDUser = connection.User2  WHERE IDuser = '$id'";
+                $sql = "SELECT DISTINCT  NameUser, FirstNameUser, PP FROM `user` INNER JOIN connection ON `user`.IDUser = connection.User2  WHERE IDuser = '$id' UNION SELECT DISTINCT  NameUser, FirstNameUser, PP FROM `user` INNER JOIN connection ON `user`.IDUser = connection.User1  WHERE IDuser = '$id'";
                 $result = mysqli_query($conn, $sql);
                 if ($row = mysqli_fetch_assoc($result)) {
                     $sql2 = "SELECT Path FROM user INNER JOIN media ON media.IDMedia = PP WHERE IDUser = '$id'";
@@ -321,12 +339,38 @@ if (isset($_SESSION["idLoad"])) { //if has to load a specifique user page
                             <p class="nameFriend"><?php echo $row['FirstNameUser'] ?><?php echo $row['NameUser'] ?></p>
 
                             <form action="deleteFriend.php" method="post" class="deleteFriendButton">
-                                <button type="submit" name="submit" class="btn btn-danger btn-xs deleteFriendButton">Delete</button>
+                                <button type="submit" name="submit" class="btn btn-danger btn-xs deleteFriendButton">
+                                    Delete
+                                </button>
                             </form>
                         </div>
                         <?php
                     }
                 }
+
+                /*
+                $sql = "SELECT DISTINCT  NameUser, FirstNameUser, PP FROM `user` INNER JOIN connection ON `user`.IDUser = connection.User1  WHERE IDuser = '$id'";
+                $result = mysqli_query($conn, $sql);
+                if ($row = mysqli_fetch_assoc($result)) {
+                    $sql2 = "SELECT Path FROM user INNER JOIN media ON media.IDMedia = PP WHERE IDUser = '$id'";
+                    $result2 = mysqli_query($conn, $sql2);
+                    if ($row2 = mysqli_fetch_assoc($result2)) {
+                        //$idLoad = $id;
+                        ?>
+                        <div class="member" id="<?php echo $id; ?>">
+                            <img src="<?php echo $row2['Path'] ?>" class="friendPic">
+                            <p class="nameFriend"><?php echo $row['FirstNameUser'] ?><?php echo $row['NameUser'] ?></p>
+
+                            <form action="deleteFriend.php" method="post" class="deleteFriendButton">
+                                <button type="submit" name="submit" class="btn btn-danger btn-xs deleteFriendButton">
+                                    Delete
+                                </button>
+                            </form>
+                        </div>
+                        <?php
+                    }
+                }
+                */
             }
         }
         ?>

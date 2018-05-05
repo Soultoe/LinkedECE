@@ -14,7 +14,7 @@ $userID = mysqli_real_escape_string($conn, $_POST['userID']);
 //delete the request
 $sql = "DELETE FROM connectionrequest WHERE User1 = $userID AND User2 = $_SESSION[id]";
 $result = mysqli_query($conn, $sql);
-if($result != null){
+if ($result != null) {
     echo "success delete";
 }
 
