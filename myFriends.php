@@ -52,7 +52,7 @@ if (!isset($_SESSION['id'])) {
                         ?>
                         <div class="member" id="<?php echo $id; ?>">
                             <img src="<?php echo $row2['Path'] ?>" class="friendPic">
-                            <p class="nameFriend"><?php echo $row['FirstNameUser'] ?><?php echo $row['NameUser'] ?></p>
+                            <p class="nameFriend"><?php echo $row['FirstNameUser'] ?> <?php echo $row['NameUser'] ?></p>
 
                             <form action="deleteFriend.php" method="post" class="deleteFriendButton">
                                 <button type="submit" name="submit" class="btn btn-danger btn-xs deleteFriendButton">

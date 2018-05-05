@@ -80,7 +80,7 @@ if (!isset($_SESSION['id'])) {
                 <!-- Information Job -->
 
                 <div id="experience">
-                    <p id="company"><em><?php echo $row['Pseudo'] ?></em> a eu une expérience chez <i
+                    <p id="company"><em><?php echo $row['Pseudo'] ?></em> worked at <i
                                 id="companyName"><?php echo $row['NameCompany'] ?></i></p>
                     <p id="position"> as <?php echo $row['Position'] ?></p>
                 </div>
@@ -104,7 +104,7 @@ if (!isset($_SESSION['id'])) {
 
                 <div id="realisation">
                     <p id="descriptionRealisation"><?php echo $row['Description'] ?></p>
-                    <p id="membersRealisation"> Avec : <?php while ($row2 = mysqli_fetch_assoc($result2)) {
+                    <p id="membersRealisation"> With : <?php while ($row2 = mysqli_fetch_assoc($result2)) {
                             echo $row2['NameUser'];
                         } ?> </p>
                 </div>

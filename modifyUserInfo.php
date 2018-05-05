@@ -26,22 +26,22 @@ if (!isset($_SESSION['id'])) {
 			echo '
 
                 <div class="form-group">
-                <label>Nouveau Prénom</label>
+                <label>New first name</label>
                 <input type="text" name="firstName" value="'.$first.'" class="form-control field">
                 </div>
 		
 		        <div class="form-group">
-		        <label>Nouveau Nom de famille</label>
+		        <label>New surname</label>
 		        <input type="text" name="lastName" value="'.$last.'" class="form-control field">
 		        </div>
 		
 		        <div class="form-group">
-		        <label> Nouveau Pseudo</label>
+		        <label> New alias</label>
 		        <input type="text" name="pseudo" value="'.$pseudo.'" class="form-control field">
 		        </div>
 		
 		        <div class="form-group">
-		        <label>Nouveau mot de passe</label>
+		        <label>New Password</label>
 		        <input type="password" name="pwd1" placeholder="Previous password" class="form-control field">
 		        </div>
 		
@@ -51,17 +51,17 @@ if (!isset($_SESSION['id'])) {
 		        </div>
 		
 		        <div class="form-group">
-		        <label>Photo de profil</label>
+		        <label>Change profile picture</label>
 		        <input type="file" name="pp" class="field"> 
 		        </div>
 		
 		        <div class="form-group">
-		        <label>Photo de fond</label>
+		        <label>Change background picture</label>
 		        <input type="file" name="bp" class="field">
 		        </div>
 		
 		        <div class="form-group">
-		        <label>CV</label>
+		        <label>upload a Curriculum Vitae</label>
 		        <input type="file" name="cv" class="field">
 		        </div>
 		';
@@ -83,7 +83,7 @@ if (!isset($_SESSION['id'])) {
 
             <div class="form-group">
                 <label>Experience description</label>
-                <input type="text" name="Edescription" placeholder="Edescription" class="form-control field">
+                <input type="text" name="Edescription" placeholder="description" class="form-control field">
             </div>
             <button type="submit" name="submit" class="btn btn-primary">Add</button>
         </form>
@@ -110,12 +110,12 @@ if (!isset($_SESSION['id'])) {
         <form action="addRealisation.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label>Project Name</label>
-                <input type="text" name="project" value="project" class="form-control field">
+                <input type="text" name="project" placeholder="project" class="form-control field">
             </div>
 
             <div class="form-group">
                 <label>Project Description</label>
-                <input type="text" name="Pdescription" value="Pdescription" class="form-control field">
+                <input type="text" name="Pdescription" placeholder="description" class="form-control field">
             </div>
             <button type="submit" name="submit" class="btn btn-primary">Add</button>
         </form>

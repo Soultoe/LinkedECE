@@ -13,14 +13,14 @@ if (!isset($_SESSION['id'])) {
 
             <div class="content">
                     <textarea class="publishArea" name="text"
-                              placeholder="Ecrivez votre nouvelle publication ici"></textarea>
+                              placeholder="What's on your mind?"></textarea>
             </div>
 
             <div class="precisions">
 
                 <div class="file">
                     <i class="glyphicon glyphicon-plus" style="height: 20px; width: 20px;"></i>
-                    <input type="file" name="doc">
+                    <input type="file" name="doc" value="select a file">
                 </div>
 
                 <div class="date">
@@ -37,7 +37,7 @@ if (!isset($_SESSION['id'])) {
 
             </div>
 
-            <button action="logout.php" method="POST" name="submit" class="btn btn-success publishButton">Publier
+            <button action="logout.php" method="POST" name="submit" class="btn btn-success publishButton">Publish
             </button>
 
         </form>
@@ -143,9 +143,9 @@ while ($res = mysqli_fetch_assoc($tmp)){
         <input type="hidden" name="User" value="<?php echo $_SESSION['id'] ?>">
         <input type="hidden" name="post" value="<?php echo $res['IDPublication'] ?>">
         <textarea style='margin-left: 20px; border-radius: 10px;' name="comment"
-                  placeholder="Ecrivez votre commentaire ici"></textarea>
+                  placeholder="comment on that..."></textarea>
         <div>
-            <input type="submit" name="submit" value="commenter" class="btn btn-primary"
+            <input type="submit" name="submit" value="comment" class="btn btn-primary"
                    style="margin-left: 20px; margin-bottom: 20px;">
         </div>
     </form>
