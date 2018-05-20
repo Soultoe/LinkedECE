@@ -17,12 +17,14 @@ $comp = null;
 $sql = "SELECT Company FROM user WHERE IDUser = '$_SESSION[id]'";
 $result1 = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result1);
+//var_dump($row);
+
 ?>
 <form action="addJob.php" method="POST">
     <input type="text" name="Position" placeholder="Position">
     <input type="text" name="Description" placeholder="Description">
-    <input type="time" name="DateBegin" placeholder="Date Debut">
-    <input type="time" name="DateEnd" placeholder="Date Fin">
+    <input type="date" name="DateBegin" placeholder="Date Debut">
+    <input type="date" name="DateEnd" placeholder="Date Fin">
     <?php
     if($row['Company'] != null) $comp = $row['Company'];
     else {
@@ -49,11 +51,22 @@ if(isset($_POST['add'])) {
         exit();
     }
     else {
-        $sql = "INSERT INTO job(Company, Description, DateBegin, DateEnd) SET ($comp, $position, $description, $datebegin, $dateend)";
+        //TO DO : if put the company name : look for this name in the bdd if exists, if so put then according Company ID, otherwise create a new company and use the newly created ID
+
+
+        $position = "'". $position ."'" ;
+        $description = "'". $description ."'";
+        $datebegin = "'". $datebegin ."'";
+        $dateend = "'". $dateend ."'";
+
+        //INSERT INTO job(User, Company, Position, Description, DateBegin, DateEnd) VALUES (10, 1, hdg, fdghd, 2018-05-20, 2018-05-22)'
+        $sql = "INSERT INTO job(User, Company, Position, Description, DateBegin, DateEnd) VALUES ($_SESSION[id], $comp, $position, $description, $datebegin, $dateend)";
+        //var_dump($sql);
         $result1 = mysqli_query($conn, $sql);
-        $res = mysqli_fetch_assoc($result1);
-        if(!$res){
-            header("Location: addJob.php?error=loginError");
+        //var_dump($result1);
+        //$res = mysqli_fetch_assoc($result1);
+        if(!$result1){
+            header("Location: addJob.php?error=addJobError");
             exit();
         }
         else{
