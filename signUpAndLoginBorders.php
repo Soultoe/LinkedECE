@@ -7,8 +7,8 @@
 
     <meta name="description" content="">
     <meta name="Romain" content="">
-    <!--<link rel="icon" href="../../favicon.ico"> -->
-    <title>Learning Bootstrap</title>
+    <link rel="icon" href="favicon.ico">
+    <title>LinkedECE</title>
 
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet"> <!--this is bootstrap CSS-->
     <link href="css/bordersStyle.css" rel="stylesheet"> <!--this is bootstrap CSS-->

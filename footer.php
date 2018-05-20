@@ -4,7 +4,7 @@
 
 <footer class="footer">
     <div class="container">
-        <p class="text-muted">This website was developped by Romain Brisse, Alexis Martin and Gabriel Padis, consultez notre forge <a href="https://github.com/Soultoe/LinkedECE" target="_blank">ici</a>!</p>
+        <p class="text-muted">This website was developped by Romain Brisse, Alexis Martin and Gabriel Padis, consult our forge <a href="https://github.com/Soultoe/LinkedECE" target="_blank">here</a>!</p>
     </div>
 </footer>
 
